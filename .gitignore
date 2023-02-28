@@ -1,0 +1,7 @@
+.venv
+venv
+
+# Django
+__pycache__
+migrations
+db.sqlite3
