@@ -9,7 +9,7 @@ const withAuth = (WrappedComponent) => {
 
         useEffect(() => {
             if (!token) {
-                router.push("/login");
+                router.push("/auth/Login");
             }
         }, [token]);
 
