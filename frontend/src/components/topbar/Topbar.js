@@ -23,7 +23,7 @@ function Topbar() {
     try {
       const response = await api.get('/auth/user')
       console.log(response.data.user)
-      data = {
+      const data = {
         username: null,
         email:null,
         firstname:null,

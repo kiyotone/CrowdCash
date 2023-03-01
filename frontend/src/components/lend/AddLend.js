@@ -12,6 +12,7 @@ function AddLend() {
  
 
   const closeAddLend = (e) => {
+    
     if (e.target.id == "LendBox") {
       dispatch(changeLendBox(false));
     }
