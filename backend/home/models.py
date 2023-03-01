@@ -17,7 +17,6 @@ class LoanRequest(models.Model):
     amount = models.IntegerField(null=False)
     min_interest = models.FloatField(null=False)
     max_interest = models.FloatField(null=False)
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_requests', null=True)
 
     def to_dict(self):
         return {
@@ -34,6 +33,15 @@ class LoanRequest(models.Model):
             'max_interest': self.max_interest,
             'receiver': self.receiver.username if self.receiver else None
         }
+    
 
-
+class Deal(models.Model):
+    lender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lender')
+    borrower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='borrower')
+    request = models.ForeignKey(LoanRequest, on_delete=models.CASCADE, related_name='request')
+    amount = models.IntegerField(null=False)
+    interest = models.FloatField(null=False)
+    status = models.CharField(max_length=100, default='ongoing')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 

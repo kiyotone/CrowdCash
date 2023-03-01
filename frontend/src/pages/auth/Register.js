@@ -1,12 +1,26 @@
 import FormContainer from "@/UI/formContainer";
 import PhoneInput from "react-phone-input-2";
-import { useState, useRouter, useSelector, useEffect } from "react";
+import { useState, useSelector, useEffect } from "react";
 import Terms from "@/components/Terms";
+import api from "@/components/stuff/axios"; // Axios instance
+import { setToken } from "@/components/stuff/helper"; // Set token in local storage
+import { useRouter } from "next/router"; // Router
 
 const Register = () => {
   const [formIsValid, setFormIsValid] = useState(false);
-
   const [isTermsOpen, setIsTermsOpen] = useState(false);
+
+  const router = useRouter();
+
+  // States
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [dob, setDob] = useState("");
+
 
   const clickedterms = (e) => {
     if (isTermsOpen) {
@@ -17,6 +31,30 @@ const Register = () => {
       setIsTermsOpen(true);
     }
   };
+
+  const registerPageSubmit = async (e) => {
+    e.preventDefault();
+
+    data = {
+      username: null,
+      password: null,
+      firstName: null,
+      lastName: null,
+      address: null,
+      phone: null,
+      dob: null
+    }
+
+    const response = await api.post("/auth/register", data);
+    if (response.status == 201) {
+      // Registration successful
+      setToken(response.data.access)
+      router.push("/")
+    } else {
+      // Username already taken
+    }
+  }
+
   return (
     <div className="h-screen w-screen bg-background_color flex items-center justify-center text-secondary relative">
       <div>
@@ -28,7 +66,7 @@ const Register = () => {
           <hr className={` m-3 bg-secondary`} />
         </div>
 
-        <form className="flex gap-4 flex-col">
+        <form onSubmit={registerPageSubmit} className="flex gap-4 flex-col">
           <div className="flex gap-2">
             <div className="flex flex-col gap-1">
               <label>First Name</label>

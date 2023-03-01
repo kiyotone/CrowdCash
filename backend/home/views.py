@@ -90,8 +90,28 @@ class GetRequestView(APIView):
             'investment_requests': investment_requests_json
         }, status=status.HTTP_200_OK)
     
-# class MyRequestView(APIView):
-#     """Gets all requests of the user"""
+class MyRequestView(APIView):
+     """Gets all requests of the user"""
 
-#     def get(self, request: Request)
+     def get(self, request: Request):
+         user = request.user
+         # Get Loan Requests which are pending
+         loan_requests = LoanRequest.objects.filter(author=user, type='Loan')
+         # Get Investment Requests which are pending
+         investment_requests = LoanRequest.objects.filter(author=user, type='Investment')
+         loan_requests_json = []
+         investment_requests_json = []
+
+         for item in loan_requests:
+             loan_requests_json.append(item.to_dict())
+         
+         for item in investment_requests:
+             investment_requests_json.append(item.to_dict())
+
+         return Response({
+             'loan_requests': loan_requests_json,
+             'investment_requests': investment_requests_json
+         }, status=status.HTTP_200_OK)
+     
+
 
