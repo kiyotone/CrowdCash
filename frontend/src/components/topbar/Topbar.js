@@ -24,9 +24,9 @@ function Topbar() {
       const response = await api.get('/auth/user')
       console.log(response.data.user)
       const data = {
-        firstname:"null",
-        email:response.data.user.username,
-        lastname:"null",
+        firstname:response.data.user.first_name,
+        email:response.data.user.email,
+        lastname:response.data.user.last_name,
         notifications : {},
         deals : {}
       }
@@ -111,7 +111,7 @@ function Topbar() {
 
         {main.isOrderBarOpen && <OrderBar />}
 
-        <div>{user.firstname}</div>
+        <div>{user.firstname} {' '} {user.lastname} </div>
       </div>
     </div>
   );

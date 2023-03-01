@@ -4,7 +4,6 @@ import {
   changeLoanBox,
 } from "@/components/redux/features/mainSlicer";
 import LoanBar from "@/components/loan/LoanBar";
-import { useState } from "react";
 
 
 const Loan = () => {

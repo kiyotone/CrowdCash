@@ -5,12 +5,15 @@ import Terms from "@/components/Terms";
 import api from "@/components/stuff/axios"; // Axios instance
 import { setToken } from "@/components/stuff/helper"; // Set token in local storage
 import { useRouter } from "next/router"; // Router
+import { useDispatch } from "react-redux";
+import { changeUser } from "@/components/redux/features/userSlicer";
 
 const Register = () => {
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(true);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   const router = useRouter();
+  const dispatch = useDispatch()
 
   // States
   const [email, setEmail] = useState("");
@@ -21,6 +24,7 @@ const Register = () => {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [dob, setDob] = useState("");
+  const [error,setError] = useState("");
 
 
   const clickedterms = (e) => {
@@ -36,25 +40,47 @@ const Register = () => {
   const registerPageSubmit = async (e) => {
     e.preventDefault();
 
-    data = {
+    const data = {
       username: username,
       password: password,
       firstName: firstName,
       lastName: lastName,
       address: address,
       phone: phone,
-      dob: dob
+      dob: dob,
+      email: "e@qw.com"
     }
-
+    
+    try {
     const response = await api.post("/auth/register", data);
     if (response.status == 201) {
       // Registration successful
       setToken(response.data.access)
       router.push("/")
     } else {
-      // Username already taken
+      console.log("UsernameAlreadyTaken")
+      setError("Username Already Taken")
+    
     }
-  }
+    }
+    catch(error){
+    
+      console.log(error)
+    
+      if (error.response.status == 409){
+      console.log("UsernameAlreadyTaken")
+      setError("Something Already Taken")
+    }
+      
+      else if (error.response.status ==400) {
+        console.log("Form Not completely filled")
+        setError("Form Not Completely Filled")
+      }
+          
+      }
+    }
+
+  
 
   return (
     <div className="h-screen w-screen bg-background_color flex items-center justify-center text-secondary relative">
@@ -62,6 +88,9 @@ const Register = () => {
         <div className="text-primary text-2xl font-semibold p-4 text-center">
           Register
         </div>
+
+
+        <div className="text-red-600">{error}</div>
 
         <div className="mt-2 w-[24rem] h-[1rem]">
           <hr className={` m-3 bg-secondary`} />
@@ -89,6 +118,7 @@ const Register = () => {
               country={"np"}
               inputClass="form_input"
               countryCodeEditable={false}
+              onChange={(e)=>setPhone(e)}
             />
             <div className="flex flex-col w-full">
               <lable>Date of Birth(B.S)</lable>
@@ -129,7 +159,7 @@ const Register = () => {
           </div>
 
           <button
-            className={`"bg-button_secondary rounded-lg py-2 text-[#333]  disabled:bg-gray-400 disabled:cursor-not-allowed text-[#fff]"`}
+            className={`bg-button_secondary rounded-lg py-2 text-[#333]  disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-[#fff]`}
             disabled={!formIsValid}
           >
             Submit
