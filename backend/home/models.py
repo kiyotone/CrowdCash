@@ -45,3 +45,16 @@ class Deal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'lender': self.lender.username,
+            'borrower': self.borrower.username,
+            'request': self.request.to_dict(),
+            'amount': self.amount,
+            'interest': self.interest,
+            'status': self.status,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
+
