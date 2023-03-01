@@ -2,14 +2,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 function LoanBar() {
-  const user = useSelector((state)=> state.user)
+  
+  
+  
   return (
     <div className='w-[40rem] h-50 text-red-600 flex bg-white'>
       
       <div className='pt-3 w-12 h-12'>Image</div>
         
         <div>
-          <div className='font-bold'>Kirtan Kunwar</div>
+          <div className='font-bold'>use</div>
             <div className='flex'>
                 <div>Amount: </div>
                 <div>10000</div>
