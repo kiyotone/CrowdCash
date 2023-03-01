@@ -30,6 +30,9 @@ function Topbar() {
       }
       dispatch(changeUser(data))
     }
+    catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(() => {
