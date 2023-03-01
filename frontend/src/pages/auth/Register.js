@@ -7,15 +7,15 @@ const Register = () => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [isTermsOpen, setIsTermsOpen] = useState(false);
-  
+
   const clickedterms = (e) => {
     if (isTermsOpen) {
-      if(e.target.id == "termsID"){
-      setIsTermsOpen(false)
+      if (e.target.id == "termsID") {
+        setIsTermsOpen(false);
       }
+    } else {
+      setIsTermsOpen(true);
     }
-    else {
-      setIsTermsOpen(true)};
   };
   return (
     <div className="h-screen w-screen bg-background_color flex items-center justify-center text-secondary relative">
@@ -36,7 +36,7 @@ const Register = () => {
             </div>
 
             <div className="flex flex-col gap-1">
-              <label>LastName</label>
+              <label>Last Name</label>
               <input className="form_input" type="text"></input>
             </div>
           </div>
@@ -45,16 +45,25 @@ const Register = () => {
             <label>Address</label>
             <input className="form_input" type="text"></input>
           </div>
-
-          <PhoneInput
-            country={"np"}
-            inputClass="form_input"
-            countryCodeEditable={false}
-          />
+          <div className="flex gap-2">
+            <PhoneInput
+              country={"np"}
+              inputClass="form_input"
+              countryCodeEditable={false}
+            />
+            <div className="flex flex-col w-full">
+              <lable>Date of Birth(B.S)</lable>
+              <input className="form_input" type="date"></input>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label>Username</label>
+            <input className="form_input" type="text"></input>
+          </div>
 
           <div className="flex flex-col gap-1">
-            <label>Citizenship</label>
-            <input className="form_input" type="number"></input>
+            <label>Password</label>
+            <input className="form_input" type="password"></input>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -90,9 +99,9 @@ const Register = () => {
       </div>
       {isTermsOpen && (
         <div
-        id="termsID"
+          id="termsID"
           className="absolute h-screen flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] w-screen justify-center"
-          onClick={(e)=>clickedterms(e)}
+          onClick={(e) => clickedterms(e)}
         >
           <Terms />
         </div>
