@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiNotification } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import {
@@ -10,10 +10,23 @@ import { useDispatch } from "react-redux";
 import NotificationBar from "./Notification/NotificationBar";
 import OrderBar from "./Order/OrderBar";
 import Logo from "./Logo.png";
+import api from "../stuff/axios";
+import { changeUser } from "../redux/features/userSlicer";
 
 function Topbar() {
   const main = useSelector((state) => state.main);
   const dispatch = useDispatch();
+  const user = useSelector((state)=>state.user);
+  const [email,setEmail] = useState(null);
+
+  
+  useEffect(()=>{
+
+    getUser()
+   
+    
+      
+  }, [])
 
   const notificationPressed = () => {
     main.isNotificationBarOpen
@@ -80,7 +93,7 @@ function Topbar() {
 
         {main.isOrderBarOpen && <OrderBar />}
 
-        <div>Profile</div>
+        <div>user</div>
       </div>
     </div>
   );

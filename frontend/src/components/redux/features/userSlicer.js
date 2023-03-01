@@ -5,7 +5,8 @@ const initialState = {
     firstname : null,
     lastname : null,
     email : null,
-    notifications : null
+    notifications : null,
+    deals: null,
 
 }
 
@@ -19,6 +20,7 @@ export const userSlicer = createSlice({
             state.lastname = actions.payload.lastname,
             state.email = actions.payload.email,
             state.notifications = actions.payload.notifications
+            state.deals = actions.payload.deals
         }
     }
 

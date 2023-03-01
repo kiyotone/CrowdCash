@@ -37,7 +37,7 @@ export const mainSlicer = createSlice({
     }
 });
 
-export const {changeLoggidin,changeNotificationBar,changeOrderBar,changeCurrentPortal,changeLendBox,changeLoanBox} = mainSlicer.actions;
+export const {changeLoggidin,changeNotificationBar,changeOrderBar,changeCurrentPortal,changeLendBox} = mainSlicer.actions;
 
 export default mainSlicer.reducer;
 
