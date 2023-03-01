@@ -23,10 +23,10 @@ function AddLoan() {
     }
 
   return (
-    <div id='loanBox' className='w-screen h-screen absolute top-0 flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] justify-center'
+    <div id='loanBox' className='w-screen h-screen absolute top-0 right-0  flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] justify-center'
     onClick={(e) => closeAddLoan(e)}
     >
-    <div  className='w-96 h-[30rem] flex flex-col rounded-md text-white bg-gray-800'>
+    <div  className='w-96 h-[30rem] bg flex flex-col rounded-md text-white bg-gray-800'>
         <div>  
             <label>
                 Amount
@@ -52,8 +52,9 @@ function AddLoan() {
         <div>
         {checkbox && <textarea></textarea>}
         </div>
-        <button> Add</button>
-        
+        <div  className='w-screen'>
+        <button className='bg-[rgba(130,56,56,0.95)]'> Add</button>
+        </div>
     </div>
     </div>
 

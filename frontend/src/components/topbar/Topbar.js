@@ -34,7 +34,7 @@ function Topbar() {
 
   return (
     <div
-      className={`w-full flex items-center justify-between text-[#555] h-20 bg-[#eee] shadow-xl shadow-white`}
+      className={`w-full flex items-center justify-between text-[#555] h-20 bg-[#eee] `}
     >
       <div className="pl-20">
         <img
