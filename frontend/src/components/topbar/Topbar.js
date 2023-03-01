@@ -80,7 +80,7 @@ function Topbar() {
           Loan
         </div>
         <div
-          className={`w-24 p-2 m-3 bg-[rgba(26,81,32,0.95)] justify-center flex cursor-pointer duration-700 ease-in-out rounded-md ${
+          className={`w-24 p-2 m-3 bg-[#2c8b35] justify-center flex cursor-pointer duration-700 ease-in-out rounded-md ${
             main.currentPortal == "Lend" ? " h-full" : " h-[40px] "
           }`}
           onClick={() => dispatch(changeCurrentPortal("Lend"))}

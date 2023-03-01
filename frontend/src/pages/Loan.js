@@ -1,28 +1,28 @@
 import AddLoan from "@/components/loan/AddLoan";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeLoanBox,
-} from "@/components/redux/features/mainSlicer";
+import { changeLoanBox } from "@/components/redux/features/mainSlicer";
 import LoanBar from "@/components/loan/LoanBar";
 import { useState } from "react";
-
 
 const Loan = () => {
   const dispatch = useDispatch();
   const main = useSelector((state) => state.main);
   const toggleLoanBox = () => {
-    main.isLoanBoxOpen ? dispatch(changeLoanBox(false)) : dispatch(changeLoanBox(true))
-  }
+    main.isLoanBoxOpen
+      ? dispatch(changeLoanBox(false))
+      : dispatch(changeLoanBox(true));
+  };
 
   return (
     <div className="h-screen flex flex-col items-center">
       <div className="w-full h-full ">
         <div className="h-2 w-full bg-[#b84f4f]"></div>
-        <div className="flex justify-end px-9 py-5 ">
+        <div className="flex justify-end px-9 py-5 gap-2 items-center">
+          <div>Ask Loan:</div>
           <button
             onClick={() => toggleLoanBox()}
-            className={`rounded-md h-[3rem] w-[3rem] font-bold bg-[#ddd] z-50 relative ${
-              main.isLoanBoxOpen ? "bg-[#333]" : ""
+            className={`rounded-md h-[3rem] w-[3rem] font-bold  z-50 relative ${
+              main.isLoanBoxOpen ? "bg-[#333]" : "bg-[#ddd]"
             }`}
           >
             <div
@@ -39,7 +39,7 @@ const Loan = () => {
           {main.isLoanBoxOpen && <AddLoan />}
         </div>
         <div className="flex flex-col items-center">
-        <LoanBar />
+          <LoanBar />
         </div>
       </div>
     </div>

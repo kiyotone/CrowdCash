@@ -5,16 +5,16 @@ import { useState, useReducer, useEffect } from "react";
 import api from "@/components/stuff/axios";
 import { setToken } from "@/components/stuff/helper";
 
-const emailReducer = (state, action) => {
+const usernameReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return {
       value: action.val,
-      isValid: action.val.includes("@"),
+      isValid: action.val.length > 0,
     };
   }
 
   if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: state.value.includes("@") };
+    return { value: state.value, isValid: state.value.length > 0 };
   }
 
   return { value: "", isValid: fasle };
@@ -31,12 +31,11 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = () => {
-  
   const router = useRouter();
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const [emailState, dispatchEmail] = useReducer(emailReducer, {
+  const [usernameState, dispatchusername] = useReducer(usernameReducer, {
     value: "",
     isValid: null,
   });
@@ -46,38 +45,38 @@ const Login = () => {
     isValid: null,
   });
 
-  const { isValid: emailIsValid } = emailState;
+  const { isValid: usernameIsValid } = usernameState;
   const { isValid: passwordIsValid } = passwordState;
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      setFormIsValid(emailIsValid && passwordIsValid);
+      setFormIsValid(usernameIsValid && passwordIsValid);
     }, 500);
 
     return () => {
       clearTimeout(identifier);
     };
-  }, [emailIsValid, passwordIsValid]);
-  const emailChangeHandler = (event) => {
-    dispatchEmail({ type: "USER_INPUT", val: event.target.value });
+  }, [usernameIsValid, passwordIsValid]);
+  const usernameChangeHandler = (event) => {
+    dispatchusername({ type: "USER_INPUT", val: event.target.value });
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
   };
 
-  const validateEmailHandler = () => {
-    dispatchEmail({ type: "INPUT_BLUR" });
+  const validateusernameHandler = () => {
+    dispatchusername({ type: "INPUT_BLUR" });
   };
 
   const validatePasswordHandler = () => {
-    dispatchEmail({ type: "INPUT_BLUR" });
+    dispatchusername({ type: "INPUT_BLUR" });
   };
 
   const submitHandler = async (event) => {
     event.preventDefault();
     const data = {
-      username: emailState.value,
+      username: usernameState.value,
       password: passwordState.value,
     };
 
@@ -93,7 +92,6 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(emailState.value, passwordState.value);
   };
 
   return (
@@ -112,18 +110,18 @@ const Login = () => {
             <input
               type="text"
               placeholder={`${
-                emailIsValid === false
-                  ? "Enter Valid Email"
-                  : "Email or PhoneNo."
+                usernameIsValid === false
+                  ? "Enter Valid Username"
+                  : "Username or PhoneNo."
               }`}
               className={`pl-4 mt-4 bg-transparent border-2 rounded-md w-[19rem] h-[3rem] border-[#555] outline-1 outline-secondary ${
-                emailIsValid === false
+                usernameIsValid === false
                   ? "border-red-600 placeholder:text-red-600"
                   : ""
               }`}
-              value={emailState.value}
-              onChange={emailChangeHandler}
-              onBlur={validateEmailHandler}
+              value={usernameState.value}
+              onChange={usernameChangeHandler}
+              onBlur={validateusernameHandler}
             />
             <input
               type="password"

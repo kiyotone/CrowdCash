@@ -7,16 +7,9 @@ import { useSelector } from "react-redux";
 const inter = Inter({ subsets: ["latin"] });
 
 function Home() {
-  const main = useSelector((state)=> state.main)
+  const main = useSelector((state) => state.main);
   return (
-    <div className="">
-      {
-        main.currentPortal == "Loan" ? <Loan /> : <Lend />
-      }
-        
-  
-    
-    </div>
+    <div className="">{main.currentPortal == "Loan" ? <Loan /> : <Lend />}</div>
   );
 }
 
