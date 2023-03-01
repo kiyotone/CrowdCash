@@ -70,23 +70,23 @@ function Topbar() {
         <img
           src={Logo.src}
           alt="Logo"
-          className="h-[60px] w-[60px] aspect-auto"
+          className="h-[60px] w-[80px] aspect-auto"
         />
       </div>
 
-      <div className="w-60 h-full flex pt-4 overflow-hidden transition-all text-[#ddd]">
+      <div className="w-72 h-full flex pt-4 overflow-hidden transition-all text-[#ddd] justify-between">
         <div
-          className={` p-2 m-3 bg-[rgba(130,56,56,0.95)] justify-center flex cursor-pointer duration-700 ease-in-out ${
+          className={`w-24 p-2 m-3 bg-[#b84f4f] justify-center flex cursor-pointer duration-700 ease-in-out ${
             main.currentPortal == "Loan"
-              ? " rounded-t-md  h-full w-[100px]"
-              : "rounded-md h-[40px] w-[60px]"
+              ? " rounded-t-md  h-full "
+              : "rounded-md h-[40px] "
           }`}
           onClick={() => dispatch(changeCurrentPortal("Loan"))}
         >
           Loan
         </div>
         <div
-          className={` p-2 m-3 bg-[rgba(26,81,32,0.95)] justify-center flex cursor-pointer duration-700 ease-in-out rounded-md ${
+          className={`w-24 p-2 m-3 bg-[rgba(26,81,32,0.95)] justify-center flex cursor-pointer duration-700 ease-in-out rounded-md ${
             main.currentPortal == "Lend"
               ? " h-full w-[100px]"
               : " h-[40px] w-[60px]"
