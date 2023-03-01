@@ -16,7 +16,7 @@ function Notification() {
         
         <div className='ml-4 w-72 flex flex-col justify-between'>
             
-            <p className='text-sm overflow-ellipsis w-70 overflow-hidden'>My name is Kirtan kunwar i am a god and i know it everyone else is kinda gay ngl fr fr tbh tbh gay gay gay. They are super gay super super omegalul gay gay marcon gay prahsatn gay pippy's pp smoll very smoll reduced to atoms by thanos</p>
+            <p className='text-sm overflow-ellipsis w-70 overflow-hidden'></p>
             
             <div className='w-full text-[.6rem] items-end pb-1'>9:30</div>
         </div>

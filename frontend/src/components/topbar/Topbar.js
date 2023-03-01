@@ -107,11 +107,11 @@ function Topbar() {
       </div>
 
       <div className="pr-20 space-x-5 flex items-start">
-        <BiNotification
+        {/* <BiNotification
           className="w-6 h-6 cursor-pointer"
           onClick={notificationPressed}
         />
-        {main.isNotificationBarOpen && <NotificationBar />}
+        {main.isNotificationBarOpen && <NotificationBar />} */}
 
         <div className="cursor-pointer" onClick={orderPressed}>
           Deals
