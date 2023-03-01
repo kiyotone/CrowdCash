@@ -14,7 +14,7 @@ const Lend = () => {
   return (
     <div className="h-full flex flex-col items-center">
       <div className="w-full h-full ">
-        <div className="h-2 w-full bg-[#25592a]"></div>
+        <div className="h-2 w-full bg-[#25592a] transition-colors duration-200"></div>
         <div className="flex justify-end px-9 py-5 ">
           <button
             onClick={() => dispatch(changeLoanBox(true))}

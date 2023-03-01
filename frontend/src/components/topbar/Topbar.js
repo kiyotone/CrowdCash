@@ -16,34 +16,28 @@ import { changeUser } from "../redux/features/userSlicer";
 function Topbar() {
   const main = useSelector((state) => state.main);
   const dispatch = useDispatch();
-  const user = useSelector((state)=>state.user);
-  const [email,setEmail] = useState(null);
+  const user = useSelector((state) => state.user);
+  const [email, setEmail] = useState(null);
 
-  const getUser = async () =>{
+  const getUser = async () => {
     try {
-      const response = await api.get('/auth/user')
-      console.log(response.data.user)
+      const response = await api.get("/auth/user");
+      console.log(response.data.user);
       data = {
         username: null,
-        email:null,
-        firstname:null,
-        lastname:null
-      }
-      dispatch(changeUser(data))
+        email: null,
+        firstname: null,
+        lastname: null,
+      };
+      dispatch(changeUser(data));
+    } catch (error) {
+      console.log(error);
     }
-    catch(error){
-      console.log(error)
-  
-    }
-  }
+  };
 
-  useEffect(()=>{
-
-    getUser()
-   
-    
-      
-  }, [])
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const notificationPressed = () => {
     main.isNotificationBarOpen
@@ -87,9 +81,7 @@ function Topbar() {
         </div>
         <div
           className={`w-24 p-2 m-3 bg-[rgba(26,81,32,0.95)] justify-center flex cursor-pointer duration-700 ease-in-out rounded-md ${
-            main.currentPortal == "Lend"
-              ? " h-full w-[100px]"
-              : " h-[40px] w-[60px]"
+            main.currentPortal == "Lend" ? " h-full" : " h-[40px] "
           }`}
           onClick={() => dispatch(changeCurrentPortal("Lend"))}
         >
