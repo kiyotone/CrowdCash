@@ -14,8 +14,7 @@ function Home() {
         main.currentPortal == "Loan" ? <Loan /> : <Lend />
       }
         
-    
-      
+  
     
     </div>
   );

@@ -14,10 +14,10 @@ export const userSlicer = createSlice({
   initialState,
   reducers: {
     changeUser: (state, actions) => {
-      (state.firstname = actions.payload.username),
-        (state.lastname = actions.payload.lastname),
-        (state.email = actions.payload.email),
-        (state.notifications = actions.payload.notifications);
+      state.firstname = actions.payload.username,
+        state.lastname = actions.payload.lastname,
+        state.email = actions.payload.email,
+        state.notifications = actions.payload.notifications;
       state.deals = actions.payload.deals;
     },
   },
