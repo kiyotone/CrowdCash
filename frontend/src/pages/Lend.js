@@ -1,5 +1,6 @@
 import { changeLendBox } from "@/components/redux/features/mainSlicer";
 import { useEffect, useState } from "react";
+import LendCard from "@/components/lend/LendCard";
 
 import AddLend from "@/components/lend/AddLend";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +21,7 @@ const Lend = () => {
     try {
       const response = await api.get("/getrequests");
       setLends(response.data.investment_requests);
-      console.log(response.data.investment_requests)
+  
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +56,10 @@ const Lend = () => {
           </button>
           {main.isLendBoxOpen && <AddLend />}
         </div>
-        {/* <LendBar /> */}
+        <div className="flex flex-col items-center ">
+          <LendCard lend_array={Lends} />
+        </div>
+      
       </div>
     </div>
   );

@@ -12,6 +12,8 @@ import OrderBar from "./Order/OrderBar";
 import Logo from "./Logo.png";
 import api from "../stuff/axios";
 import { changeUser } from "../redux/features/userSlicer";
+import photo from '@/userimage.png';
+import Image from "next/image";
 
 function Topbar() {
   const main = useSelector((state) => state.main);
@@ -22,12 +24,10 @@ function Topbar() {
   const getUser = async () => {
     try {
       const response = await api.get("/auth/user");
-      console.log(response.data.user);
       const data = {
-        username: null,
-        email: null,
-        firstname: null,
-        lastname: null,
+        user: response.data.user,
+        notifications : {},
+        
       };
       dispatch(changeUser(data));
     } catch (error) {
@@ -101,10 +101,13 @@ function Topbar() {
         </div>
 
         {main.isOrderBarOpen && <OrderBar />}
-
-        <div>
-          {user.user.firstname} {user.user.lastname}{" "}
+        <div className="flex items-center space-x-2">
+        <Image src={photo} className='w-8 h-8'/>
+          <div className="">
+          {user.user.firstname} {" "} {user.user.lastname}
+          </div>
         </div>
+        
       </div>
     </div>
   );
