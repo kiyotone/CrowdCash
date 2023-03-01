@@ -2,7 +2,7 @@ import AddLoan from "@/components/loan/AddLoan";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLoanBox } from "@/components/redux/features/mainSlicer";
 import LoanBar from "@/components/loan/LoanBar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import api from "@/components/stuff/axios"; // axios instance
 
 const Loan = () => {
@@ -25,6 +25,10 @@ const Loan = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getLoans();
+  }, []);
 
   return (
     <div className="h-screen flex flex-col items-center">

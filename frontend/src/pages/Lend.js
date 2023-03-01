@@ -1,5 +1,5 @@
 import { changeLendBox } from "@/components/redux/features/mainSlicer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import AddLend from "@/components/lend/AddLend";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,8 +27,8 @@ const Lend = () => {
   }
 
   useEffect(() => {
-
-  })
+    getLends();
+  }, []);
 
   return (
     <div className="h-full flex flex-col items-center">
