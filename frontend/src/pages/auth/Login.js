@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useState, useReducer, useEffect } from "react";
+import api from "@/components/stuff/axios";
+import { setToken } from "@/components/stuff/helper";
 
 const emailReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -72,8 +74,25 @@ const Login = () => {
     dispatchEmail({ type: "INPUT_BLUR" });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
+    const data = {
+      username: emailState.value,
+      password: passwordState.value,
+    };
+
+    try {
+      const response = await api.post("/auth/token", data);
+      console.log(response.data);
+      if (response.data.access_token) {
+        setToken(response.data.access_token);
+        router.push("/");
+      } else {
+        console.log("No token");
+      }
+    } catch (error) {
+      console.log(error);
+    }
     console.log(emailState.value, passwordState.value);
   };
 
