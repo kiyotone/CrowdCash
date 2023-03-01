@@ -15,6 +15,7 @@ const Register = () => {
   // States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username,setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -36,13 +37,13 @@ const Register = () => {
     e.preventDefault();
 
     data = {
-      username: null,
-      password: null,
-      firstName: null,
-      lastName: null,
-      address: null,
-      phone: null,
-      dob: null
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      phone: phone,
+      dob: dob
     }
 
     const response = await api.post("/auth/register", data);
@@ -70,18 +71,18 @@ const Register = () => {
           <div className="flex gap-2">
             <div className="flex flex-col gap-1">
               <label>First Name</label>
-              <input className="form_input" type="text"></input>
+              <input onChange={(e)=>setFirstName(e.target.value)} className="form_input" type="text"></input>
             </div>
 
             <div className="flex flex-col gap-1">
               <label>Last Name</label>
-              <input className="form_input" type="text"></input>
+              <input onChange={(e)=>setLastName(e.target.value)} className="form_input" type="text" ></input>
             </div>
           </div>
 
           <div className="flex flex-col gap-1">
             <label>Address</label>
-            <input className="form_input" type="text"></input>
+            <input onChange={(e)=>setAddress(e.target.value)} className="form_input" type="text"></input>
           </div>
           <div className="flex gap-2">
             <PhoneInput
@@ -91,17 +92,17 @@ const Register = () => {
             />
             <div className="flex flex-col w-full">
               <lable>Date of Birth(B.S)</lable>
-              <input className="form_input" type="date"></input>
+              <input onChange={(e)=>setDob(e.target.value)} className="form_input" type="date"></input>
             </div>
           </div>
           <div className="flex flex-col gap-1">
             <label>Username</label>
-            <input className="form_input" type="text"></input>
+            <input onChange={(e)=>setUsername(e.target.value)} className="form_input" type="text"></input>
           </div>
 
           <div className="flex flex-col gap-1">
             <label>Password</label>
-            <input className="form_input" type="password"></input>
+            <input onChange={(e)=>setPassword(e.target.value)} className="form_input" type="password"></input>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -111,11 +112,11 @@ const Register = () => {
 
           <div className="flex flex-col gap-1">
             <label>Uplode Photo of Citizenship</label>
-            <input type="file" />
+            <input  type="file" />
           </div>
 
           <div className="flex items-center gap-2">
-            <input type="checkbox" />
+            <input  type="checkbox" />
             <span>
               Agree to{" "}
               <span
