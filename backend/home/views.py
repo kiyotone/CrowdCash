@@ -177,7 +177,7 @@ class StartDealView(APIView):
             'message': 'Deal started successfully'
         }, status=status.HTTP_201_CREATED)
      
-class completeDealView(APIView):
+class CompleteDealView(APIView):
     """Completes the deal with a user"""
 
     def post(self, request: Request) -> Response:
