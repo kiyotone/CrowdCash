@@ -38,6 +38,7 @@ function AddLend() {
       if (response.status === 201) {
         // Success
         alert("You have successfully created a Lend Request")
+        window.location.reload(false)
       } else {
         // Fail
       }

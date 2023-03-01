@@ -18,10 +18,10 @@ export const userSlicer = createSlice({
             state.notifications = actions.payload.notifications
            },
         changeborrows: (state,actions)=>{
-            state.borrows = actions.payload.borrows
+            state.borrows = actions.payload
         },
         changelends: (state,actions)=>{
-            state.lends = actions.payload.lends
+            state.lends = actions.payload
         }
     }
 

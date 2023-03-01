@@ -38,6 +38,7 @@ function AddLoan() {
       if (response.status === 201) {
         // Success
         alert("You have successfully created a Loan Request")
+        window.location.reload(false)
       } else {
         // Fail
       }

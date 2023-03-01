@@ -45,6 +45,7 @@ function Topbar() {
   
   const getDeals = async () => {
     const response = await api.get("/mydeals")
+    console.log(response)
     dispatch(changeborrows(response.data.borrows))
     dispatch(changelends(response.data.lends))
   }
