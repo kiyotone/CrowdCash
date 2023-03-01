@@ -21,7 +21,7 @@ class LoanRequest(models.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'author': self.author.username,
+            'author': self.author.to_dict(),
             'title': self.title,
             'description': self.description,
             'created_at': self.created_at,

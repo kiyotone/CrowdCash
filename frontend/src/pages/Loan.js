@@ -2,6 +2,8 @@ import AddLoan from "@/components/loan/AddLoan";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLoanBox } from "@/components/redux/features/mainSlicer";
 import LoanBar from "@/components/loan/LoanBar";
+import { useEffect, useState } from "react";
+import api from "@/components/stuff/axios"; // axios instance
 
 const Loan = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,22 @@ const Loan = () => {
       ? dispatch(changeLoanBox(false))
       : dispatch(changeLoanBox(true));
   };
+
+  const [Loans, setLoans] = useState(null);
+
+  const getLoans = async () => {
+    try {
+      const response = await api.get("/getrequests");
+      setLoans(response.data.loan_requests);
+      console.log(response.data.loan_requests);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getLoans();
+  }, []);
 
   return (
     <div className="h-screen flex flex-col items-center">

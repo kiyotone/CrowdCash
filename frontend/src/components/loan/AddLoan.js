@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeLoanBox } from "../redux/features/mainSlicer";
+import api from "../stuff/axios"; // axios instance
 
 function AddLoan() {
   const [checkbox, checkboxPressed] = useState(false);
@@ -20,6 +21,30 @@ function AddLoan() {
       dispatch(changeLoanBox(false));
     }
   };
+
+  const handleAddLoanSubmit = async (e) => {
+    e.preventDefault();
+
+    data = {
+      'title': null,
+      'amount': null,
+      'description': null,
+      'min_rate': null,
+      'max_rate': null,
+      'type': 'Loan' // Lend ko lagi chai type Investment hunxa
+    }
+
+    try {
+      const response = await api.post("/addrequest", data);
+      if (response.status === 201) {
+        // Success
+      } else {
+        // Fail
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div
