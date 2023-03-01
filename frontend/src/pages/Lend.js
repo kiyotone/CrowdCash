@@ -13,7 +13,7 @@ const Lend = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col items-center">
+    <div className="h-full flex flex-col items-center">
       <div className="w-full h-full ">
         <div className="h-2 w-full bg-[#25592a]"></div>
         <div className="flex justify-end px-9 py-5 ">
