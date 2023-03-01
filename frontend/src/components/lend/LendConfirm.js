@@ -3,6 +3,7 @@ import photo from '@/userimage.png'
 import Image from 'next/image';
 import { useDispatch, useSelector } from "react-redux";
 import { changeConfirmPoppup } from '../redux/features/mainSlicer';
+import api from '../stuff/axios';
 
 
 
@@ -10,6 +11,23 @@ function LendConfirm(props) {
   const lend = props.lend;
   console.log(lend)
   const dispatch = useDispatch()
+  
+  const handleSubmit = async (e) =>{
+    // e.preventDefault();
+    const data = {
+      id :lend.id,
+      amount:lend.amount,
+      finalAmount:lend.amount,
+      weeks:lend.weeks,
+      userID:lend.author.id
+
+    }
+    
+    const response = await api.post('/startdeal',data)
+    console.log(response)
+    alert("Lend Complete")
+
+  }
 
   const handleclose = (e) => {
     if (e.target.id == "lendConfirmBox") {
@@ -45,11 +63,18 @@ function LendConfirm(props) {
         </div>
         
         </div>
-        <div className="flex pt-3 items-center">
-          <div className='pl-5 '>Rate:</div>
-          <div className="pl-2">
-            {lend.min_interest}% - {lend.max_interest}%
+        <div className="flex pt-3 justify-between items-center">
+          <div className='flex'>
+            <div className='pl-5 '>Final Amount:</div>
+            <div className='pl-2'>{lend.finalAmount}</div>
+          </div>
+          <div className='flex mr-5'>
+          <div className="pl-10">
+            {lend.weeks}
+          </div>
+          <div className='pl-2'>weeks</div>
         </div>
+        
         
        </div>
        <div className='pl-5 flex space-x-4 pt-3'>
@@ -64,7 +89,7 @@ function LendConfirm(props) {
       </div>
       </div>
       <div className='flex justify-center'>
-      <button className='bg-[#2c8b35] p-3 mt-4 rounded-full items-center '>Give This Loan</button>
+      <button onClick={(e)=>handleSubmit(e)} className='bg-[#2c8b35] p-3 mt-4 rounded-full items-center '>Get This Lend</button>
       </div>
       </div>
       

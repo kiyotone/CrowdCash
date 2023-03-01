@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeLendBox } from "../redux/features/mainSlicer";
+import api from "../stuff/axios"; // axios instance
 
 function AddLend() {
   const [checkbox, checkboxPressed] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [lowRate, setLowRate] = useState(0);
-  const [highRate, setHighRate] = useState(0);
+  const [finalAmount, setfinalAmount] = useState(0);
   const [lendTime, setLendTime] = useState(0);
   const [lendDescription, setLendDescription] = useState(0);
   const dispatch = useDispatch();
@@ -21,13 +21,39 @@ function AddLend() {
     }
   };
 
+  const handleAddLendSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+  
+      'amount': amount,
+      'description': lendDescription,
+      'finalAmount': finalAmount,
+      'weeks': lendTime,
+      'type': 'Investment' // Lend ko lagi chai type Investment hunxa
+    }
+
+    try {
+      const response = await api.post("/addrequest", data);
+      if (response.status === 201) {
+        // Success
+        alert("You have successfully created a Lend Request")
+      } else {
+        // Fail
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+
   return (
     <div
       id="lendBox"
       className="w-screen h-screen absolute top-0 right-0  flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] justify-center"
       onClick={(e) => closeAddLend(e)}
     >
-      <div className="w-96 h-[22rem] p-5 flex flex-col rounded-md text-white bg-[#333] gap-3">
+      <div className="w-96 h-[26rem] p-5 flex flex-col rounded-md text-white bg-[#333] gap-3">
         <div className="flex flex-col gap-1">
           <label>Amount:</label>
           <input
@@ -39,34 +65,22 @@ function AddLend() {
           />
         </div>
 
-        <div className="flex gap-3 w-full">
-          <div className="flex flex-col gap-1 w-[50%]">
-            <label>Min-Rate(%)</label>
+          <div className="flex flex-col gap-1 ">
+            <label>Final Amount</label>
             <input
               type={"number"}
-              onChange={(e) => setLowRate(e.target.value)}
+              onChange={(e) => setfinalAmount(e.target.value)}
               className="form_input "
-              min="0"
-              max="15"
+              min="100"
+              max="10000"
             />
           </div>
 
-          <div className="flex flex-col gap-1 w-[50%]">
-            <label>Max-Rate(%)</label>
-            <input
-              type={"number"}
-              onChange={(e) => setHighRate(e.target.value)}
-              className="form_input"
-              min="1"
-              max="15"
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-1">
-          <label>Time</label>
+        
+        <div className="flex flex-col gap-1 w-[50%]">
+          <label>Time in Weeks</label>
           <input
-            type={"date"}
+            type={"number"}
             onChange={(e) => setLendTime(e.target.value)}
             className="form_input w-full"
           />
@@ -77,12 +91,12 @@ function AddLend() {
           <input
             type={"text"}
             onChange={(e) => setLendDescription(e.target.value)}
-            className="form_input w-full"
+            className="form_input w-full h-20"
           />
         </div>
 
         <div className="py-2">
-          <button className="w-full bg-[#b84f4f] rounded-md py-1"> Add</button>
+          <button onClick={(e)=>handleAddLendSubmit(e)} className="w-full bg-[#2c8b35] rounded-md py-1"> Add</button>
         </div>
       </div>
     </div>

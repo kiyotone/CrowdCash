@@ -27,7 +27,7 @@ class LoanRequest(models.Model):
             'type': self.type,
             'status': self.status,
             'amount': self.amount,
-            'finaAmount': self.final_amount,
+            'finalAmount': self.final_amount,
             'weeks': self.weeks
         }
     

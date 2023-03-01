@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BiNotification } from "react-icons/bi";
-import { createDispatchHook, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   changeCurrentPortal,
   changeNotificationBar,
@@ -8,18 +8,26 @@ import {
 } from "../redux/features/mainSlicer";
 import { useDispatch } from "react-redux";
 import NotificationBar from "./Notification/NotificationBar";
-import OrderBar from "./Order/OrderBar";
+import OrderBar from "./Deals/DealsBar";
 import Logo from "./Logo.png";
 import api from "../stuff/axios";
-import { changeUser } from "../redux/features/userSlicer";
-import photo from '@/userimage.png';
-import Image from "next/image";
+import { changeborrows, changelends, changeUser } from "../redux/features/userSlicer";
+import { useRouter } from "next/router";
+import DealsBar from "./Deals/DealsBar";
 
 function Topbar() {
   const main = useSelector((state) => state.main);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [email, setEmail] = useState(null);
+  const router = useRouter();
+
+  function handleLogout(){
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+    }
+    router.push('/auth/Login')
+  }
 
   const getUser = async () => {
     try {
@@ -34,9 +42,17 @@ function Topbar() {
       console.log(error);
     }
   };
+  
+  const getDeals = async () => {
+    const response = await api.get("/mydeals")
+    dispatch(changeborrows(response.data.borrows))
+    dispatch(changelends(response.data.lends))
+  }
+
 
   useEffect(() => {
     getUser();
+    getDeals()
   }, []);
 
   const notificationPressed = () => {
@@ -97,18 +113,19 @@ function Topbar() {
         {main.isNotificationBarOpen && <NotificationBar />}
 
         <div className="cursor-pointer" onClick={orderPressed}>
-          Orders
+          Deals
         </div>
 
-        {main.isOrderBarOpen && <OrderBar />}
+        {main.isOrderBarOpen && <DealsBar />}
         <div className="flex items-center space-x-2">
-        <Image src={photo} className='w-8 h-8'/>
           <div className="">
-          {user.user.firstname} {" "} {user.user.lastname}
+          {user.user.firstname}
           </div>
+          <button onClick={()=>handleLogout()} className="ml-4">Logout</button >
         </div>
         
       </div>
+      
     </div>
   );
 }

@@ -5,7 +5,6 @@ import LoanConfirm from "./LoanConfirm";
 import Loanitem from "./Loanitem";
 
 function LoanCard(props) {
-  console.log(props.loan_array)
   const main = useSelector((state) => state.main)
   const [pressedLoan,setPressedLoan] = useState({})
   const dispatch = useDispatch()

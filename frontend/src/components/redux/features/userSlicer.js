@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     user:{},
     notifications : null,
-    deals: null,
+    borrows: [],
+    lends : []
 
 }
 
@@ -15,12 +16,17 @@ export const userSlicer = createSlice({
 
             state.user = actions.payload.user
             state.notifications = actions.payload.notifications
-            state.deals = actions.payload.deals
+           },
+        changeborrows: (state,actions)=>{
+            state.borrows = actions.payload.borrows
+        },
+        changelends: (state,actions)=>{
+            state.lends = actions.payload.lends
         }
     }
 
 })
 
-export const {changeUser} = userSlicer.actions;
+export const {changeUser,changeborrows,changelends} = userSlicer.actions;
 
 export default userSlicer.reducer;
