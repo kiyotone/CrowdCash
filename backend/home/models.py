@@ -17,6 +17,23 @@ class LoanRequest(models.Model):
     amount = models.IntegerField(null=False)
     min_interest = models.FloatField(null=False)
     max_interest = models.FloatField(null=False)
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_requests', null=True)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'author': self.author.username,
+            'title': self.title,
+            'description': self.description,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'type': self.type,
+            'status': self.status,
+            'amount': self.amount,
+            'min_interest': self.min_interest,
+            'max_interest': self.max_interest,
+            'receiver': self.receiver.username if self.receiver else None
+        }
 
 
 
