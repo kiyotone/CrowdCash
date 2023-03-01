@@ -19,10 +19,27 @@ function Topbar() {
   const user = useSelector((state)=>state.user);
   const [email,setEmail] = useState(null);
 
+  const getUser = async () =>{
+    try {
+      const response = await api.get('/auth/user')
+      console.log(response.data.user)
+      data = {
+        username: null,
+        email:null,
+        firstname:null,
+        lastname:null
+      }
+      dispatch(changeUser(data))
+    }
+    catch(error){
+      console.log(error)
   
+    }
+  }
+
   useEffect(()=>{
 
-    // getUser()
+    getUser()
    
     
       

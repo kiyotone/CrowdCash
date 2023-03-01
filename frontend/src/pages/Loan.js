@@ -17,7 +17,9 @@ const Loan = () => {
             { main.isLoanBoxOpen && <AddLoan />}
             
           </div>
-          <LoanBar />
+          <div className='mt-6 flex flex-col items-center'>
+            <LoanBar />
+          </div>
       </div>
       
       
