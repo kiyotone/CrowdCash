@@ -46,8 +46,8 @@ class Deal(models.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'lender': self.lender.username,
-            'borrower': self.borrower.username,
+            'lender': self.lender.to_dict(),
+            'borrower': self.borrower.to_dict(),
             'request': self.request.to_dict(),
             'amount': self.amount,
             'finalAmount': self.final_amount,
