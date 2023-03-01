@@ -8,7 +8,7 @@ const initialState = {
     currentPortal : "Lend",
     isLoanBoxOpen : false,
     isLendBoxOpen : false,
-    
+    confirmPoppup : false
 }
 
 export const mainSlicer = createSlice({
@@ -33,11 +33,15 @@ export const mainSlicer = createSlice({
         },
         changeLendBox : (state,actions)=>{
             state.isLendBoxOpen = actions.payload
+        },
+        changeConfirmPoppup : (state,actions)=>{
+            state.confirmPoppup = actions.payload
         }
+        
     }
 });
 
-export const {changeLoggidin,changeNotificationBar,changeOrderBar,changeCurrentPortal,changeLendBox,changeLoanBox} = mainSlicer.actions;
+export const {changeLoggidin,changeNotificationBar,changeOrderBar,changeCurrentPortal,changeLendBox,changeLoanBox,changeConfirmPoppup} = mainSlicer.actions;
 
 export default mainSlicer.reducer;
 

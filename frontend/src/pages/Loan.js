@@ -20,7 +20,7 @@ const Loan = () => {
     try {
       const response = await api.get("/getrequests");
       setLoans(response.data.loan_requests);
-      console.log(response.data.loan_requests);
+      
     } catch (error) {
       console.log(error);
     }
@@ -36,10 +36,10 @@ const Loan = () => {
         <div className={`h-2 w-full bg-[#b84f4f] `}></div>
 
         <div className="flex justify-end px-9 py-5 gap-2 items-center">
-          <div>Ask Loan:</div>
+          <div>Ask Loan:  </div>
           <button
             onClick={() => toggleLoanBox()}
-            className={`rounded-md h-[3rem] w-[3rem] font-bold  z-50 relative ${
+            className={`rounded-md h-[3rem] w-[3rem] font-bold  z-40 relative ${
               main.isLoanBoxOpen ? "bg-[#333]" : "bg-[#ddd]"
             }`}
           >
@@ -57,7 +57,7 @@ const Loan = () => {
           {main.isLoanBoxOpen && <AddLoan />}
         </div>
         <div className="flex flex-col items-center ">
-          <LoanCard />
+          <LoanCard loan_array={Loans}/>
         </div>
       </div>
     </div>
