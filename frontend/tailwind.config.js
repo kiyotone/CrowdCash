@@ -4,7 +4,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
- 
+
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -12,11 +12,12 @@ module.exports = {
     extend: {
       colors: {
         primary: "#00BFFF",
-        secondary: "#F8F8FF",
-        button_secondary: "#FFA500",
-        background_color: "#8B0000",
-      }
+        secondary: "#dddddd",
+        button_secondary: "#FFC107",
+        accent_color: "#8B0000",
+        background_color: "#282C34",
+      },
     },
   },
   plugins: [],
-}
+};
