@@ -31,7 +31,7 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = () => {
-  const main = useSelector((state) => state.main);
+  
   const router = useRouter();
 
   const [formIsValid, setFormIsValid] = useState(false);
@@ -84,8 +84,8 @@ const Login = () => {
     try {
       const response = await api.post("/auth/token", data);
       console.log(response.data);
-      if (response.data.access_token) {
-        setToken(response.data.access_token);
+      if (response.data.access) {
+        setToken(response.data.access);
         router.push("/");
       } else {
         console.log("No token");

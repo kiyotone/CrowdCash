@@ -5,7 +5,9 @@ const initialState = {
     logged_in_as : "",
     isNotificationBarOpen : false,
     isOrderBarOpen : false,
-    currentPortal : "none"
+    currentPortal : "Lend",
+    isLoanBoxOpen : false,
+    isLendBoxOpen : false,
     
 }
 
@@ -25,11 +27,17 @@ export const mainSlicer = createSlice({
         },
         changeCurrentPortal : (state,actions)=>{
             state.currentPortal = actions.payload
+        },
+        changeLoanBox : (state,actions)=>{
+            state.isLoanBoxOpen = actions.payload
+        },
+        changeLendBox : (state,actions)=>{
+            state.isLendBoxOpen = actions.payload
         }
     }
 });
 
-export const {changeLoggidin,changeNotificationBar,changeOrderBar,changeCurrentPortal} = mainSlicer.actions;
+export const {changeLoggidin,changeNotificationBar,changeOrderBar,changeCurrentPortal,changeLendBox,changeLoanBox} = mainSlicer.actions;
 
 export default mainSlicer.reducer;
 

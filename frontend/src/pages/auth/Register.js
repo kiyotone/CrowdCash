@@ -7,6 +7,7 @@ const Register = () => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [isTermsOpen, setIsTermsOpen] = useState(false);
+  
   const clickedterms = (e) => {
     if (isTermsOpen) {
       if(e.target.id == "termsID"){
