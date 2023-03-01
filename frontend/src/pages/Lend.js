@@ -1,7 +1,9 @@
 import { changeLendBox } from "@/components/redux/features/mainSlicer";
+import { useEffect } from "react";
 
 import AddLend from "@/components/lend/AddLend";
 import { useDispatch, useSelector } from "react-redux";
+import api from "@/components/stuff/axios"; // axios instance
 
 const Lend = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,22 @@ const Lend = () => {
       ? dispatch(changeLendBox(false))
       : dispatch(changeLendBox(true));
   };
+
+  const [Lends, setLends] = useState(null);
+
+  const getLends = async () => {
+    try {
+      const response = await api.get("/getrequests");
+      setLends(response.data.investment_requests);
+      console.log(response.data.investment_requests)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+
+  })
 
   return (
     <div className="h-full flex flex-col items-center">
