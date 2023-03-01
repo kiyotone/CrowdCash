@@ -132,6 +132,15 @@
 
     `Authorization: Bearer <access-token>`
 
+* **Data Params**
+
+    `title=[string]` <br />
+    `type=[string]` <br />
+    `amount=[integer]` <br />
+    `interest=[float]` optional <br />
+
+
+
 * **Success Response**
 
     * **Code:** 200 <br />
@@ -140,3 +149,4 @@
 * **Error Response**
 
     * **Code:** 401 Unauthorized <br />
+

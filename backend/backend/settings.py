@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'home',
     'userAuthentication',
     'rest_framework',
     'rest_framework_simplejwt',
