@@ -5,9 +5,14 @@ import Terms from "@/components/Terms";
 
 const Register = () => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
-  const clickedterms = () => {
-    if (isTermsOpen) setIsTermsOpen(false);
-    else setIsTermsOpen(true);
+  const clickedterms = (e) => {
+    if (isTermsOpen) {
+      if(e.target.id == "termsID"){
+      setIsTermsOpen(false)
+      }
+    }
+    else {
+      setIsTermsOpen(true)};
   };
   return (
     <div className="h-screen w-screen bg-background_color flex items-center justify-center text-secondary relative">
@@ -65,8 +70,9 @@ const Register = () => {
       </div>
       {isTermsOpen && (
         <div
+        id="termsID"
           className="absolute h-screen flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] w-screen justify-center"
-          onClick={clickedterms}
+          onClick={(e)=>clickedterms(e)}
         >
           <Terms />
         </div>
