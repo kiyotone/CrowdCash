@@ -175,6 +175,7 @@
     `amount=[integer]` <br />
     `type=[string]` options: `Loan` or `Investment` <br />
     `finalAmount=[integer]` <br />
+    `weeks=[integer]` <br />
 
 * **Success Response**
 

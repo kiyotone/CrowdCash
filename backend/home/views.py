@@ -151,11 +151,11 @@ class StartDealView(APIView):
             return Response({'detail': 'Request does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
         if loan_request.type == 'Loan':
-            borrower = loan_request.author
+            borrower = request.user
             lender = data['user']
         else:
             borrower = data['user']
-            lender = loan_request.author
+            lender = request.user
 
         try:
             new_deal = Deal.objects.create(
