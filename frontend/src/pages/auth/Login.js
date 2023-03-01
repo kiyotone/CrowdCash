@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useState, useReducer, useEffect } from "react";
-import api from "@/components/stuff/axios";
 
 const emailReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -16,7 +15,7 @@ const emailReducer = (state, action) => {
     return { value: state.value, isValid: state.value.includes("@") };
   }
 
-  return { value: "", isValid: false };
+  return { value: "", isValid: fasle };
 };
 
 const passwordReducer = (state, action) => {
@@ -86,34 +85,46 @@ const Login = () => {
         <div className="mt-2 w-[24rem] h-[1rem]">
           <hr className={` m-3 bg-[#eee]`} />
         </div>
-
-        <form
-          className="mt-3 flex flex-col items-center"
-          onClick={submitHandler}
-        >
-          <input
-            type="text"
-            placeholder="Email or Username"
-            className={`pl-4 mt-4 bg-transparent border-2 rounded-md w-[19rem] h-[3rem] border-[#555] outline-1 outline-secondary`}
-            value={emailState.value}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className={`pl-4 mt-4 bg-transparent border-2 rounded-md outline-secondary w-[19rem] h-[3rem] border-[#555]`}
-            value={passwordState.value}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
-          />
-          <button
-            className={`pl-4 mt-4 rounded-md w-[19rem] h-[3rem] button bg-button_secondary disabled:bg-gray-400 disabled:cursor-not-allowed text-[#fff]`}
-            disabled={!formIsValid}
+        <div>
+          <form
+            className="mt-3 flex flex-col items-center"
+            onSubmit={submitHandler}
           >
-            Continue
-          </button>
-
+            <input
+              type="text"
+              placeholder={`${
+                emailIsValid === false
+                  ? "Enter Valid Email"
+                  : "Email or PhoneNo."
+              }`}
+              className={`pl-4 mt-4 bg-transparent border-2 rounded-md w-[19rem] h-[3rem] border-[#555] outline-1 outline-secondary ${
+                emailIsValid === false
+                  ? "border-red-600 placeholder:text-red-600"
+                  : ""
+              }`}
+              value={emailState.value}
+              onChange={emailChangeHandler}
+              onBlur={validateEmailHandler}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className={`pl-4 mt-4 bg-transparent border-2 rounded-md outline-secondary w-[19rem] h-[3rem] border-[#555] ${
+                passwordIsValid === false
+                  ? "border-red-600 placeholder:text-red-600"
+                  : ""
+              }`}
+              value={passwordState.value}
+              onChange={passwordChangeHandler}
+              onBlur={validatePasswordHandler}
+            />
+            <button
+              className={`pl-4 mt-4 rounded-md w-[19rem] h-[3rem] button bg-button_secondary disabled:bg-gray-400 disabled:cursor-not-allowed text-[#fff]`}
+              disabled={!formIsValid}
+            >
+              Continue
+            </button>
+          </form>
           <div
             className={`w-[19rem] h-[3rem] flex items-center justify-between text-[.8rem] text-[#727375}]`}
           >
@@ -143,7 +154,7 @@ const Login = () => {
               Join now
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

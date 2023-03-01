@@ -1,9 +1,11 @@
 import FormContainer from "@/UI/formContainer";
 import PhoneInput from "react-phone-input-2";
-import { useState } from "react";
+import { useState, useRouter, useSelector, useEffect } from "react";
 import Terms from "@/components/Terms";
 
 const Register = () => {
+  const [formIsValid, setFormIsValid] = useState(false);
+
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const clickedterms = () => {
     if (isTermsOpen) setIsTermsOpen(false);
@@ -22,11 +24,21 @@ const Register = () => {
 
         <form className="flex gap-4 flex-col">
           <div className="flex gap-2">
-            <FormContainer label="First Name" />
-            <FormContainer label="Last Name" />
+            <div className="flex flex-col gap-1">
+              <label>First Name</label>
+              <input className="form_input" type="text"></input>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label>LastName</label>
+              <input className="form_input" type="text"></input>
+            </div>
           </div>
 
-          <FormContainer label="Address" />
+          <div className="flex flex-col gap-1">
+            <label>Address</label>
+            <input className="form_input" type="text"></input>
+          </div>
 
           <PhoneInput
             country={"np"}
@@ -34,12 +46,16 @@ const Register = () => {
             countryCodeEditable={false}
           />
 
-          <FormContainer label="Citizenship No." />
+          <div className="flex flex-col gap-1">
+            <label>Citizenship</label>
+            <input className="form_input" type="number"></input>
+          </div>
 
           <div className="flex flex-col gap-1">
             <label>Uplode Photo</label>
             <input type="file" />
           </div>
+
           <div className="flex flex-col gap-1">
             <label>Uplode Photo of Citizenship</label>
             <input type="file" />
@@ -58,7 +74,10 @@ const Register = () => {
             </span>
           </div>
 
-          <button className="bg-button_secondary rounded-lg py-2 text-[#333]">
+          <button
+            className={`"bg-button_secondary rounded-lg py-2 text-[#333]  disabled:bg-gray-400 disabled:cursor-not-allowed text-[#fff]"`}
+            disabled={!formIsValid}
+          >
             Submit
           </button>
         </form>
