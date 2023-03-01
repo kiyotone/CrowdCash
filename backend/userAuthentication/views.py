@@ -34,8 +34,8 @@ class RegisterView(APIView):
         try:
             username = data['username']
             password = data['password']
-            first_name = data['first_name']
-            last_name = data['last_name']
+            first_name = data['firstName']
+            last_name = data['lastName']
             email = data['email']
             address = data['address']
             phone = data['phone']
