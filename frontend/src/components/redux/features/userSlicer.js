@@ -1,10 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-
-    firstname : null,
-    lastname : null,
-    email : null,
+    user:{},
     notifications : null,
     deals: null,
 
@@ -16,9 +13,7 @@ export const userSlicer = createSlice({
     reducers : {
         changeUser : (state,actions) => {
 
-            state.firstname = actions.payload.firstname,
-            state.lastname = actions.payload.lastname,
-            state.email = actions.payload.email,
+            state.user = actions.payload.user
             state.notifications = actions.payload.notifications
             state.deals = actions.payload.deals
         }
