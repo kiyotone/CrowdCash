@@ -5,8 +5,10 @@ from typing import Dict
 
 # Create your models here.
 class User(AbstractUser):
-
-    balance = models.IntegerField(default=0)
+    
+    address = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=100, blank=True, unique=True)
+    date_of_birth = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -15,5 +17,10 @@ class User(AbstractUser):
         return {
             'id': self.id,
             'username': self.username,
-            'balance': self.balance
+            'email': self.email,
+            'firstname': self.first_name,
+            'lastname': self.last_name,
+            'address': self.address,
+            'phone': self.phone,
+            'date_of_birth': self.date_of_birth,
         }

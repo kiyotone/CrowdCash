@@ -16,22 +16,19 @@ import { changeUser } from "../redux/features/userSlicer";
 function Topbar() {
   const main = useSelector((state) => state.main);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [email, setEmail] = useState(null);
+  const user = useSelector((state)=>state.user);
+
 
   const getUser = async () => {
     try {
       const response = await api.get("/auth/user");
       console.log(response.data.user);
       const data = {
-        username: null,
-        email: null,
-        firstname: null,
-        lastname: null,
-      };
-      dispatch(changeUser(data));
-    } catch (error) {
-      console.log(error);
+        user:response.data.user,
+        notifications : {},
+        deals : {}
+      }
+      dispatch(changeUser(data))
     }
   };
 
@@ -102,7 +99,7 @@ function Topbar() {
 
         {main.isOrderBarOpen && <OrderBar />}
 
-        <div>user</div>
+        <div>{user.user.firstname} {' '} {user.user.lastname} </div>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import AddLoan from "@/components/loan/AddLoan";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLoanBox } from "@/components/redux/features/mainSlicer";
 import LoanBar from "@/components/loan/LoanBar";
-import { useState } from "react";
 
 const Loan = () => {
   const dispatch = useDispatch();
