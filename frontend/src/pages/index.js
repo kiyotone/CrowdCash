@@ -16,12 +16,16 @@ function Home() {
   
   return (
     <div className='w-full h-full'>
+      { main.isLoanBoxOpen && 
       
-      <div>
+      <div className='w-92 h-full'>      
+      
         <button onClick={()=>dispatch(changeLoanBox(true))} >ADD</button>
-        {main.isLoanBoxOpen && <AddLoan />}
-      </div>
+          { main.isLoanBoxOpen && <AddLoan />}
 
+      </div>
+      
+      }
       
     
     </div>
