@@ -1,20 +1,20 @@
-import AddLoan from "@/components/loan/AddLoan";
-import { useDispatch, useSelector } from "react-redux";
 import {
   changeLendBox,
   changeLoanBox,
 } from "@/components/redux/features/mainSlicer";
 import LoanBar from "@/components/loan/LoanBar";
 import { useState } from "react";
+import AddLend from "@/components/lend/AddLend";
+import { useDispatch, useSelector } from "react-redux";
 
-const Loan = () => {
+const Lend = () => {
   const dispatch = useDispatch();
   const main = useSelector((state) => state.main);
 
   return (
     <div className="h-screen flex flex-col items-center">
       <div className="w-full h-full ">
-        <div className="h-2 w-full bg-[#b84f4f]"></div>
+        <div className="h-2 w-full bg-[#25592a]"></div>
         <div className="flex justify-end px-9 py-5 ">
           <button
             onClick={() => dispatch(changeLoanBox(true))}
@@ -23,17 +23,17 @@ const Loan = () => {
             }`}
           >
             <div
-              className={`w-[20px] h-[4px] bg-[#b84f4f] rounded-lg left-3 absolute transition-all ease-in duration-300 ${
+              className={`w-[20px] h-[4px] bg-[#25592a] rounded-lg left-3 absolute transition-all ease-in duration-300 ${
                 main.isLoanBoxOpen ? "rotate-45" : ""
               }`}
             ></div>
             <div
-              className={`w-[20px] h-[4px] bg-[#b84f4f] rounded-lg  absolute left-3 transition-all ease-in duration-300 ${
+              className={`w-[20px] h-[4px] bg-[#25592a] rounded-lg  absolute left-3 transition-all ease-in duration-300 ${
                 main.isLoanBoxOpen ? "-rotate-45" : "rotate-90"
               }`}
             ></div>
           </button>
-          {main.isLoanBoxOpen && <AddLoan />}
+          {main.isLoanBoxOpen && <AddLend />}
         </div>
         <LoanBar />
       </div>
@@ -41,4 +41,4 @@ const Loan = () => {
   );
 };
 
-export default Loan;
+export default Lend;
