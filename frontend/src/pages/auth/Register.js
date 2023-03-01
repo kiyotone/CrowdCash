@@ -48,7 +48,7 @@ const Register = () => {
       address: address,
       phone: phone,
       dob: dob,
-      email: "e@qw.com"
+      email: email
     }
     
     try {
@@ -113,6 +113,12 @@ const Register = () => {
             <label>Address</label>
             <input onChange={(e)=>setAddress(e.target.value)} className="form_input" type="text"></input>
           </div>
+
+          <div className="flex flex-col gap-1">
+            <label>E-Mail</label>
+            <input onChange={(e)=>setEmail(e.target.value)} className="form_input" type="email"></input>
+          </div>
+
           <div className="flex gap-2">
             <PhoneInput
               country={"np"}
