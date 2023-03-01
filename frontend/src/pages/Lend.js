@@ -17,6 +17,7 @@ const Lend = () => {
       <div className="w-full h-full ">
         <div className="h-2 w-full bg-[#2c8b35] transition-colors duration-200"></div>
         <div className="flex justify-end px-9 py-5 items-center gap-2">
+        <div>Give Loan:  </div>
           <button
             onClick={() => toggleLendBox()}
             className={`rounded-md h-[3rem] w-[3rem] font-bold  z-50 relative ${

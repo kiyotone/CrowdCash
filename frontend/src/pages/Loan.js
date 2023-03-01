@@ -17,7 +17,7 @@ const Loan = () => {
       <div className="w-full h-full ">
         <div className="h-2 w-full bg-[#b84f4f]"></div>
         <div className="flex justify-end px-9 py-5 gap-2 items-center">
-          <div>Ask Loan:</div>
+          <div>Ask Loan:  </div>
           <button
             onClick={() => toggleLoanBox()}
             className={`rounded-md h-[3rem] w-[3rem] font-bold  z-50 relative ${

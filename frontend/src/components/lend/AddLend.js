@@ -7,17 +7,23 @@ function AddLend() {
   const [amount, setAmount] = useState(0);
   const [lowRate, setLowRate] = useState(0);
   const [highRate, setHighRate] = useState(0);
+  const [lendTime, setLendTime] = useState(0);
+  const [lendDescription, setLendDescription] = useState(0);
   const dispatch = useDispatch();
 
+  const handlePressed = () => {
+    checkbox ? checkboxPressed(false) : checkboxPressed(true);
+  };
+
   const closeAddLend = (e) => {
-    if (e.target.id == "LendBox") {
+    if (e.target.id == "lendBox") {
       dispatch(changeLendBox(false));
     }
   };
 
   return (
     <div
-      id="LendBox"
+      id="lendBox"
       className="w-screen h-screen absolute top-0 right-0  flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] justify-center"
       onClick={(e) => closeAddLend(e)}
     >
@@ -61,7 +67,7 @@ function AddLend() {
           <label>Time</label>
           <input
             type={"date"}
-            onChange={(e) => setLoanTime(e.target.value)}
+            onChange={(e) => setLendTime(e.target.value)}
             className="form_input w-full"
           />
         </div>
@@ -70,7 +76,7 @@ function AddLend() {
           <label>Description</label>
           <input
             type={"text"}
-            onChange={(e) => setLoanDescription(e.target.value)}
+            onChange={(e) => setLendDescription(e.target.value)}
             className="form_input w-full"
           />
         </div>
