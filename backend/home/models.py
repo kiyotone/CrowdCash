@@ -30,8 +30,7 @@ class LoanRequest(models.Model):
             'status': self.status,
             'amount': self.amount,
             'min_interest': self.min_interest,
-            'max_interest': self.max_interest,
-            'receiver': self.receiver.username if self.receiver else None
+            'max_interest': self.max_interest
         }
     
 
