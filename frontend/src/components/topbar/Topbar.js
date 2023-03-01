@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BiNotification } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { createDispatchHook, useSelector } from "react-redux";
 import {
   changeCurrentPortal,
   changeNotificationBar,
@@ -16,22 +16,22 @@ import { changeUser } from "../redux/features/userSlicer";
 function Topbar() {
   const main = useSelector((state) => state.main);
   const dispatch = useDispatch();
-  const user = useSelector((state)=>state.user);
-
+  const user = useSelector((state) => state.user);
+  const [email, setEmail] = useState(null);
 
   const getUser = async () => {
     try {
       const response = await api.get("/auth/user");
       console.log(response.data.user);
       const data = {
-        user:response.data.user,
-        notifications : {},
-        deals : {}
-      }
-      dispatch(changeUser(data))
-    }
-    catch (error) {
-      console.log(error)
+        username: null,
+        email: null,
+        firstname: null,
+        lastname: null,
+      };
+      dispatch(changeUser(data));
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -102,7 +102,9 @@ function Topbar() {
 
         {main.isOrderBarOpen && <OrderBar />}
 
-        <div>{user.user.firstname} {' '} {user.user.lastname} </div>
+        <div>
+          {user.user.firstname} {user.user.lastname}{" "}
+        </div>
       </div>
     </div>
   );

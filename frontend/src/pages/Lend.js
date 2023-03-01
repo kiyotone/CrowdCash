@@ -33,7 +33,7 @@ const Lend = () => {
   return (
     <div className="h-full flex flex-col items-center">
       <div className="w-full h-full ">
-        <div className="h-2 w-full bg-[#2c8b35] transition-colors duration-200"></div>
+        <div className="h-2 w-full bg-[#2c8b35]  delay-200"></div>
         <div className="flex justify-end px-9 py-5 items-center gap-2">
         <div>Give Loan:  </div>
           <button
