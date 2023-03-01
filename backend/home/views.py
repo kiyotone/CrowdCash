@@ -18,24 +18,20 @@ class AddRequestView(APIView):
     """Adds a new request to database"""
     def get_data(self, request: Mapping) -> dict:
         try:
-            title = request['title'] # Title of request
             description = request['description'] # Description of request
             amount = request['amount'] # Amount of money requested
             type = request['type'] # Type of request 'Loan' or 'Investment'
-            min_interest = request['minInterest'] # Minimum interest rate
-            max_interest = request['maxInterest'] # Maximum interest rate
-            min_interest = float(min_interest)
-            max_interest = float(max_interest)
+            final_amount = int(request['finalAmount']) # Final amount of money requested
+            weeks = int(request['weeks']) # Number of weeks for the loan
             amount = int(amount)
         except:
             return None
         
         return {
-            'title': title,
             'description': description,
             'amount': amount,
-            'min_interest': min_interest,
-            'max_interest': max_interest,
+            'final_amount': final_amount,
+            'weeks': weeks,
             'type': type
         }
 
@@ -50,11 +46,10 @@ class AddRequestView(APIView):
         try:
             new_request = LoanRequest.objects.create(
                 author=request.user,
-                title=data['title'],
                 description=data['description'],
                 amount=data['amount'],
-                min_interest=data['min_interest'],
-                max_interest=data['max_interest'],
+                final_amount=data['final_amount'],
+                weeks=data['weeks'],
                 type=data['type']
             )
             new_request.save()
@@ -124,8 +119,8 @@ class StartDealView(APIView):
         try:
             id = request['id'] # Id of the request
             amount = request['amount'] # Amount of money requested
-            interest = request['interest'] # Interest rate
-            interest = float(interest)
+            final_amount = int(request['finalAmount']) # Final amount of money requested
+            weeks = int(request['weeks']) # Number of weeks for the loan
             amount = int(amount)
             other_user = User.objects.get(id=request['userID'])
         except:
@@ -134,7 +129,8 @@ class StartDealView(APIView):
         return {
             'id': id,
             'amount': amount,
-            'interest': interest,
+            'final_amount': final_amount,
+            'weeks': weeks,
             'user': other_user
         }
 
@@ -166,7 +162,8 @@ class StartDealView(APIView):
                 request=loan_request,
                 lender=lender,
                 borrower=borrower,
-                interest=data['interest'],
+                final_amount=data['final_amount'],
+                weeks=data['weeks'],
                 amount=data['amount']
             )
             new_deal.save()

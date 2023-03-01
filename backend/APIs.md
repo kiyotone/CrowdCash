@@ -150,3 +150,66 @@
 
     * **Code:** 401 Unauthorized <br />
 
+
+---
+
+
+## **Create a new Loan/Investment request**
+
+* **URL**
+
+    /addrequest
+
+* **Method:**
+
+    `POST`
+
+* **Required Headers:**
+
+    `Authorization: Bearer <access-token>`
+
+* **Data Params**
+
+    `title=[string]` <br />
+    `type=[string]` <br />
+    `amount=[integer]` <br />
+    `type=[string]` options: `Loan` or `Investment` <br />
+    `finalAmount=[integer]` <br />
+
+* **Success Response**
+
+    * **Code:** 201 Created <br />
+    **Content:** `{message: "Request created successfully"}`
+
+* **Error Response**
+
+    * **Code:** 400 Bad Request <br />
+
+    * **Code:** 401 Unauthorized <br />
+
+
+---
+
+
+## **Get all loan/investment requests**
+
+* **URL**
+
+    /getrequests
+
+* **Method:**
+
+    `GET`
+
+* **Required Headers:**
+
+    `Authorization: Bearer <access-token>`
+
+* **Success Response**
+
+    * **Code:** 200 OK <br />
+    **Content:** `{loan_requests: [<loan-request>, <loan-request>, ...], investment_requests: [<investment-request>, <investment-request>, ...]`
+
+* **Error Response**
+
+    * **Code:** 401 Unauthorized <br />
