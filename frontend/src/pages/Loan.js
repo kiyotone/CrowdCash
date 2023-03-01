@@ -13,7 +13,7 @@ const Loan = () => {
       
       <div className='w-[60rem] h-full border-t-[10px] rounded-md border-[rgba(130,56,56,0.95)]'>      
           <div className='flex justify-end'>
-            <button className='rounded-md p-3 font-bold bg-white text-red-600' onClick={()=>dispatch(changeLoanBox(true))} >+</button>
+            <button  onClick={()=>dispatch(changeLoanBox(true))} className= 'rounded-md p-3 font-bold bg-white text-red-600'>+</button>
             { main.isLoanBoxOpen && <AddLoan />}
             
           </div>

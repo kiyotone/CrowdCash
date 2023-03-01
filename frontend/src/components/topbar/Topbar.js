@@ -22,7 +22,7 @@ function Topbar() {
   
   useEffect(()=>{
 
-    getUser()
+    // getUser()
    
     
       
