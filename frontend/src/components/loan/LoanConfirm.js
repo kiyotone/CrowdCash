@@ -17,7 +17,7 @@ function LoanConfirm(props) {
     const data = {
       id :loan.id,
       amount:loan.amount,
-      finalAmount:loan.amount,
+      finalAmount:loan.finalAmount,
       weeks:loan.weeks,
       userID:loan.author.id
 
