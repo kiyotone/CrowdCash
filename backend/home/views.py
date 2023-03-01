@@ -15,12 +15,12 @@ class AddRequestView(APIView):
     """Adds a new request to database"""
     def get_data(self, request: Mapping) -> dict:
         try:
-            title = request['title']
-            description = request['description']
-            amount = request['amount']
-            type = request['type']
-            min_interest = request['minInterest']
-            max_interest = request['maxInterest']
+            title = request['title'] # Title of request
+            description = request['description'] # Description of request
+            amount = request['amount'] # Amount of money requested
+            type = request['type'] # Type of request 'Loan' or 'Investment'
+            min_interest = request['minInterest'] # Minimum interest rate
+            max_interest = request['maxInterest'] # Maximum interest rate
             min_interest = float(min_interest)
             max_interest = float(max_interest)
             amount = int(amount)
