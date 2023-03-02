@@ -43,6 +43,11 @@ function Topbar() {
     }
   };
 
+  const handleLogoClick = () => {
+  router.push('/')
+  dispatch(changeCurrentPortal("Lend"))
+  }
+
   const getDeals = async () => {
     const response = await api.get("/mydeals");
     console.log(response);
@@ -80,8 +85,8 @@ function Topbar() {
         <img
           src={Logo.src}
           alt="Logo"
-          className="h-[60px] w-[80px] aspect-auto"
-        />
+          className="h-[60px] w-[80px] aspect-auto cursor-pointer"
+          onClick={()=>handleLogoClick()}        />
       </div>
 
       <div className="w-72 h-full flex pt-4 overflow-hidden transition-all text-[#ddd] justify-between">
@@ -118,7 +123,7 @@ function Topbar() {
 
         {main.isOrderBarOpen && <DealsBar />}
         <div className="flex items-center space-x-2">
-          <div onClick={()=>router.push('/Me')} className="">{user.user.firstname}</div>
+          <div onClick={()=>router.push('/Me')} className="cursor-pointer">{user.user.firstname}</div>
           <button
             onClick={() => handleLogout()}
             className="ml-4 bg-button_secondary rounded-lg p-2 px-3"
