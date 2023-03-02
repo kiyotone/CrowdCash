@@ -17,7 +17,7 @@ function LendConfirm(props) {
     const data = {
       id :lend.id,
       amount:lend.amount,
-      finalAmount:lend.amount,
+      finalAmount:lend.finalAmount,
       weeks:lend.weeks,
       userID:lend.author.id
 
