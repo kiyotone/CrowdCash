@@ -6,7 +6,7 @@ A Peer to Peer platform to lend and invest money.
 
 This is a web application designed to connect borrowers and lenders in a peer-to-peer network. The app allows borrowers and lenders to create loan and lend requests by specifying the loan amount, duration, and interest rate. Users can then view all available and choose to deal whether borrowing or lending. Once a deal is accepted, the borrower can withdraw the funds and start repaying the loan on agreed terms.
 
-The app includes a user authentication system, which allows users to sign up, log in, and manage their account information. The app also includes a dashboard for borrowers and lenders to track their loan activities.
+The app includes a user authentication system, which allows users to sign up and log in. The app also includes a dashboard for borrowers and lenders to track their loan activities.
 
 ### How To Use
 
@@ -24,3 +24,10 @@ Go to the frontend and backend folders and read the README.md files in each fold
 ### Technologies Used
 
 > Next.js, Tailwind, redux, Django, Django Rest Framework
+
+### Contributors
+
+* [Kirtan Kunwar](https://github.com/kiyotone)
+* [Navin Nepal](https://github.com/marconn01)
+* [Prashant Aryal](https://github.com/pr-a-sh-ant)
+* [Prateek Poudel](https://github.com/Prateek61)
