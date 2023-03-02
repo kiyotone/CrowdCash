@@ -57,3 +57,20 @@ class Deal(models.Model):
             'updated_at': self.updated_at
         }
 
+class KYC(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='kyc')
+    dob = models.TextField(blank=True)
+    father_name = models.TextField(blank=True)
+    citizenship_no = models.TextField(blank=True, unique=True)
+    license_no = models.TextField(blank=True, unique=True)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user': self.user.to_dict(),
+            'dob': self.dob,
+            'father_name': self.father_name,
+            'citizenship_no': self.citizenship_no,
+            'license_no': self.license_no
+        }
+

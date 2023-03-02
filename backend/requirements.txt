@@ -2,3 +2,9 @@ django
 djangorestframework
 djangorestframework-simplejwt
 django-cors-headers
+
+# Automated KYC
+pytesseract
+opencv-contrib-python
+pillow
+numpy

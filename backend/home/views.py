@@ -1,6 +1,7 @@
-from .models import LoanRequest, Deal
+from .models import LoanRequest, Deal, KYC
 from django.db import IntegrityError
 from django.contrib.auth import get_user_model
+from .OCR import KYC_verification
 
 # Rest Framework
 from rest_framework import status
@@ -218,3 +219,46 @@ class MyDealsView(APIView):
             'borrows': borrows_json,
             'lends': lends_json
         }, status=status.HTTP_200_OK)
+    
+class KYCView(APIView):
+    """Gets and verifies user KYC"""
+
+    def post(self, request: Request):
+        data = request.data
+        user = request.user
+
+        try:
+            img = data['img']
+        except:
+            return Response({'detail': 'Image does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        
+        if KYC.objects.filter(user=user).exists():
+            return Response({'detail': 'KYC already exists'}, status=status.HTTP_409_CONFLICT)
+
+        try:
+            kyc_data = KYC_verification(img)
+        except:
+            return Response({'detail': 'KYC verification failed'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            kyc = KYC.objects.create(
+                user=user,
+                dob=kyc_data['dob'],
+                father_name=kyc_data['father_name'],
+                citizenship_no=kyc_data['citizenship_no'],
+                license_no=kyc_data['lisence_no']
+            )
+            kyc.save()
+        except:
+            return Response({'detail': 'Failed to save'}, status=status.HTTP_409_CONFLICT)
+        
+        return Response({'kyc': kyc.to_dict()}, status=status.HTTP_201_CREATED)
+    
+
+    def get(self, request: Request):
+        user = request.user
+
+        if not KYC.objects.filter(user=user).exists():
+            return Response({'detail': 'KYC does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        
+        return Response({'kyc': KYC.objects.get(user=user).to_dict()}, status=status.HTTP_200_OK)
