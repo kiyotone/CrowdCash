@@ -11,7 +11,11 @@ import NotificationBar from "./Notification/NotificationBar";
 import OrderBar from "./Deals/DealsBar";
 import Logo from "./Logo.png";
 import api from "../stuff/axios";
-import { changeborrows, changelends, changeUser } from "../redux/features/userSlicer";
+import {
+  changeborrows,
+  changelends,
+  changeUser,
+} from "../redux/features/userSlicer";
 import { useRouter } from "next/router";
 import DealsBar from "./Deals/DealsBar";
 
@@ -22,11 +26,11 @@ function Topbar() {
   const [email, setEmail] = useState(null);
   const router = useRouter();
 
-  function handleLogout(){
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token');
+  function handleLogout() {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
     }
-    router.push('/auth/Login')
+    router.push("/auth/Login");
   }
 
   const getUser = async () => {
@@ -34,26 +38,24 @@ function Topbar() {
       const response = await api.get("/auth/user");
       const data = {
         user: response.data.user,
-        notifications : {},
-        
+        notifications: {},
       };
       dispatch(changeUser(data));
     } catch (error) {
       console.log(error);
     }
   };
-  
-  const getDeals = async () => {
-    const response = await api.get("/mydeals")
-    console.log(response)
-    dispatch(changeborrows(response.data.borrows))
-    dispatch(changelends(response.data.lends))
-  }
 
+  const getDeals = async () => {
+    const response = await api.get("/mydeals");
+    console.log(response);
+    dispatch(changeborrows(response.data.borrows));
+    dispatch(changelends(response.data.lends));
+  };
 
   useEffect(() => {
     getUser();
-    getDeals()
+    getDeals();
   }, []);
 
   const notificationPressed = () => {
@@ -106,7 +108,7 @@ function Topbar() {
         </div>
       </div>
 
-      <div className="pr-20 space-x-5 flex items-start">
+      <div className="pr-20 space-x-5 flex items-center">
         {/* <BiNotification
           className="w-6 h-6 cursor-pointer"
           onClick={notificationPressed}
@@ -119,14 +121,15 @@ function Topbar() {
 
         {main.isOrderBarOpen && <DealsBar />}
         <div className="flex items-center space-x-2">
-          <div className="">
-          {user.user.firstname}
-          </div>
-          <button onClick={()=>handleLogout()} className="ml-4">Logout</button >
+          <div className="">{user.user.firstname}</div>
+          <button
+            onClick={() => handleLogout()}
+            className="ml-4 bg-button_secondary rounded-lg p-2 px-3"
+          >
+            Logout
+          </button>
         </div>
-        
       </div>
-      
     </div>
   );
 }

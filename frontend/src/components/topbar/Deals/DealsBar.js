@@ -50,7 +50,7 @@ function DealsBar() {
           </div>
         </div>
       </div>
-      <div className="mt-3 overflow-y-scroll">
+      <div className="mt-3 overflow-y-scroll flex flex-col gap-1">
         {dealList && dealList.map((ele) => <Deals data={ele} />)}
       </div>
     </div>
