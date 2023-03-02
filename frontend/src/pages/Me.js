@@ -1,11 +1,16 @@
 import api from '@/components/stuff/axios'
 import withAuth from '@/components/stuff/withAuth'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeCurrentPortal } from '@/components/redux/features/mainSlicer'
+
 
 function Me() {
 
     const [loadRequests,setLoanRequests] = useState([])
     const [investmentRequests,setInvestmentRequests] = useState([])
+    const dispatch = useDispatch()
+    const user = useSelector((state)=>state.user)
 
     const getUserLoans = async () =>{
         const response = await api.get('/myrequests')
@@ -17,7 +22,8 @@ function Me() {
     useEffect(() => {
         
         getUserLoans();
-        
+        dispatch(changeCurrentPortal("None"))
+
 
       
     }, [])
