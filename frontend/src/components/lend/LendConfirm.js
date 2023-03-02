@@ -59,6 +59,8 @@ function LendConfirm(props) {
             </div>
           </div>
           <div className="">
+          <div className='pl-5 font-bold text-2xl'>Phone No.</div>
+            <div className="pl-5 w-20 h-7">{loan.author.phone}</div>
             <div className="pl-5 font-bold text-2xl">Description </div>
             <div className="pl-5 w-20 h-20">{lend.description}</div>
             <div className="pl-5 space-x-4 w-[80%] flex">
