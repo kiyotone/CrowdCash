@@ -11,41 +11,33 @@ function LendConfirm(props) {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-  console.log(lend)
-  const dispatch = useDispatch()
-  
-  const [success, setSuccess] = React.useState(false)
+    console.log(lend);
+    const dispatch = useDispatch();
 
-  const handleSubmit = async (e) =>{
-    // e.preventDefault();
-    const data = {
-      id: lend.id,
-      amount: lend.amount,
-      finalAmount: lend.finalAmount,
-      weeks: lend.weeks,
-      userID: lend.author.id,
+    const [success, setSuccess] = React.useState(false);
+
+    const handleSubmit = async (e) => {
+      // e.preventDefault();
+      const data = {
+        id: lend.id,
+        amount: lend.amount,
+        finalAmount: lend.finalAmount,
+        weeks: lend.weeks,
+        userID: lend.author.id,
+      };
+
+      const response = await api.post("/startdeal", data);
+      console.log(response);
+      // alert("Lend Complete");
+      // window.location.reload(false);
     };
 
     const response = await api.post("/startdeal", data);
     console.log(response);
-    alert("Lend Complete");
-    window.location.reload(false);
-  };
-      id :lend.id,
-      amount:lend.amount,
-      finalAmount:lend.finalAmount,
-      weeks:lend.weeks,
-      userID:lend.author.id
-
-    }
-    
-    const response = await api.post('/startdeal',data)
-    console.log(response)
     // alert("Lend Complete")
     // window.location.reload(false)
-    setSuccess(true)
-
-  }
+    setSuccess(true);
+  };
 
   const handleclose = (e) => {
     if (e.target.id == "lendConfirmBox") {
