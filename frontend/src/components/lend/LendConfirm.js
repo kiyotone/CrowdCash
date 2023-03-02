@@ -12,6 +12,8 @@ function LendConfirm(props) {
   console.log(lend)
   const dispatch = useDispatch()
   
+  const [success, setSuccess] = React.useState(false)
+
   const handleSubmit = async (e) =>{
     // e.preventDefault();
     const data = {
@@ -26,7 +28,8 @@ function LendConfirm(props) {
     const response = await api.post('/startdeal',data)
     console.log(response)
     // alert("Lend Complete")
-    window.location.reload(false)
+    // window.location.reload(false)
+    setSuccess(true)
 
   }
 
@@ -89,6 +92,10 @@ function LendConfirm(props) {
       
       </div>
       </div>
+
+      {/* Success message if success */}
+      {success && <div className="text-center justify-center text-green-500">You have successfully created a Loan Request</div>}
+
       <div className='flex justify-center'>
       <button onClick={(e)=>handleSubmit(e)} className='bg-[#2c8b35] p-3 mt-4 rounded-full items-center '>Get This Lend</button>
       </div>

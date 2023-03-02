@@ -11,6 +11,8 @@ function AddLoan() {
   const [loanDescription, setLoanDescription] = useState(0);
   const dispatch = useDispatch();
 
+  const [success, setSuccess] = useState(false);
+
   const handlePressed = () => {
     checkbox ? checkboxPressed(false) : checkboxPressed(true);
   };
@@ -38,7 +40,7 @@ function AddLoan() {
       if (response.status === 201) {
         // Success
         // alert("You have successfully created a Loan Request")
-        window.location.reload(false)
+        setSuccess(true);
       } else {
         // Fail
       }
@@ -54,7 +56,7 @@ function AddLoan() {
       className="w-screen h-screen absolute top-0 right-0  flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] justify-center"
       onClick={(e) => closeAddLoan(e)}
     >
-      <div className="w-96 h-[26rem] p-5 flex flex-col rounded-md text-white bg-[#333] gap-3">
+      <div className="w-96 h-[28rem] p-5 flex flex-col rounded-md text-white bg-[#333] gap-3">
         <div className="flex flex-col gap-1">
           <label>Amount:</label>
           <input
@@ -95,6 +97,9 @@ function AddLoan() {
             className="form_input w-full h-20"
           />
         </div>
+
+        {/* Success message if success */}
+        {success && <div className="text-center justify-center text-green-500">You have successfully created a Loan Request</div>}
 
         <div className="py-2">
           <button onClick={(e)=>handleAddLoanSubmit(e)} className="w-full bg-[#b84f4f] rounded-md py-1"> Add</button>

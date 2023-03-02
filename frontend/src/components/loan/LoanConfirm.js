@@ -12,6 +12,8 @@ function LoanConfirm(props) {
   console.log(loan)
   const dispatch = useDispatch()
 
+  const [success, setSuccess] = React.useState(false)
+
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const data = {
@@ -26,8 +28,8 @@ function LoanConfirm(props) {
     const response = await api.post('/startdeal',data)
     console.log(response)
     // alert("Loan Complete")
-    window.location.reload(false)
-
+    //window.location.reload(false)
+    setSuccess(true)
   }
   const handleclose = (e) => {
     if (e.target.id == "loanConfirmBox") {
@@ -88,6 +90,10 @@ function LoanConfirm(props) {
       
       </div>
       </div>
+
+      {/* Success message if success */}
+      {success && <div className="text-center justify-center text-green-500">You have successfully created a Loan Request</div>}
+
       <div className='flex justify-center'>
       <button onClick={(e)=>handleSubmit(e)} className='bg-[#b84f4f] p-3 mt-4 rounded-full items-center '>Get This Loan</button>
       </div>
