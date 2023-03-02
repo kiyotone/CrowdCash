@@ -25,28 +25,26 @@ function AddLoan() {
     e.preventDefault();
 
     const data = {
-  
-      'amount': amount,
-      'description': loanDescription,
-      'finalAmount': finalAmount,
-      'weeks': loanTime,
-      'type': 'Loan' // Lend ko lagi chai type Investment hunxa
-    }
+      amount: amount,
+      description: loanDescription,
+      finalAmount: finalAmount,
+      weeks: loanTime,
+      type: "Loan", // Lend ko lagi chai type Investment hunxa
+    };
 
     try {
       const response = await api.post("/addrequest", data);
       if (response.status === 201) {
         // Success
-        alert("You have successfully created a Loan Request")
-        window.location.reload(false)
+        alert("You have successfully created a Loan Request");
+        window.location.reload(false);
       } else {
         // Fail
       }
     } catch (error) {
       console.log(error);
     }
-    
-  }
+  };
 
   return (
     <div
@@ -54,7 +52,7 @@ function AddLoan() {
       className="w-screen h-screen absolute top-0 right-0  flex items-center bg-gradient-to-r from-[rgb(0,0,0,0.5)] to-[rgb(0,0,0,0.8)] justify-center"
       onClick={(e) => closeAddLoan(e)}
     >
-      <div className="w-96 h-[26rem] p-5 flex flex-col rounded-md text-white bg-[#333] gap-3">
+      <div className="w-96 h-[28rem] p-5 flex flex-col rounded-md text-white bg-[#333] gap-3">
         <div className="flex flex-col gap-1">
           <label>Amount:</label>
           <input
@@ -66,18 +64,17 @@ function AddLoan() {
           />
         </div>
 
-          <div className="flex flex-col gap-1 ">
-            <label>Final Amount</label>
-            <input
-              type={"number"}
-              onChange={(e) => setfinalAmount(e.target.value)}
-              className="form_input "
-              min="100"
-              max="10000"
-            />
-          </div>
+        <div className="flex flex-col gap-1 ">
+          <label>Final Amount</label>
+          <input
+            type={"number"}
+            onChange={(e) => setfinalAmount(e.target.value)}
+            className="form_input "
+            min="100"
+            max="10000"
+          />
+        </div>
 
-        
         <div className="flex flex-col gap-1 w-[50%]">
           <label>Time in Weeks</label>
           <input
@@ -97,7 +94,13 @@ function AddLoan() {
         </div>
 
         <div className="py-2">
-          <button onClick={(e)=>handleAddLoanSubmit(e)} className="w-full bg-[#b84f4f] rounded-md py-1"> Add</button>
+          <button
+            onClick={(e) => handleAddLoanSubmit(e)}
+            className="w-full bg-[#b84f4f] rounded-md py-1"
+          >
+            {" "}
+            Add
+          </button>
         </div>
       </div>
     </div>

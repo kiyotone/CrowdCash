@@ -7,8 +7,7 @@ import {
   changeOrderBar,
 } from "../redux/features/mainSlicer";
 import { useDispatch } from "react-redux";
-import NotificationBar from "./Notification/NotificationBar";
-import OrderBar from "./Deals/DealsBar";
+
 import Logo from "./Logo.png";
 import api from "../stuff/axios";
 import {
