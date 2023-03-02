@@ -11,6 +11,8 @@ function AddLoan() {
   const [loanDescription, setLoanDescription] = useState(0);
   const dispatch = useDispatch();
 
+  const [success, setSuccess] = useState(false);
+
   const handlePressed = () => {
     checkbox ? checkboxPressed(false) : checkboxPressed(true);
   };
@@ -38,6 +40,8 @@ function AddLoan() {
         // Success
         alert("You have successfully created a Loan Request");
         window.location.reload(false);
+        // alert("You have successfully created a Loan Request")
+        setSuccess(true);
       } else {
         // Fail
       }
@@ -92,6 +96,13 @@ function AddLoan() {
             className="form_input w-full h-20"
           />
         </div>
+
+        {/* Success message if success */}
+        {success && (
+          <div className="text-center justify-center text-green-500">
+            You have successfully created a Loan Request
+          </div>
+        )}
 
         <div className="py-2">
           <button

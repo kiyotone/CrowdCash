@@ -10,6 +10,8 @@ function LoanConfirm(props) {
   console.log(loan);
   const dispatch = useDispatch();
 
+  const [success, setSuccess] = React.useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -22,8 +24,9 @@ function LoanConfirm(props) {
 
     const response = await api.post("/startdeal", data);
     console.log(response);
-    alert("Loan Complete");
-    window.location.reload(false);
+    // alert("Loan Complete")
+    //window.location.reload(false)
+    setSuccess(true);
   };
   const handleclose = (e) => {
     if (e.target.id == "loanConfirmBox") {
@@ -62,10 +65,6 @@ function LoanConfirm(props) {
                 <div className="pl-10">{loan.weeks}</div>
                 <div className="pl-2">weeks</div>
               </div>
-            </div>
-            <div className="pl-5 flex space-x-4 pt-3">
-              <div className="">Created At:</div>
-              <div>{loan.created_at}</div>
             </div>
           </div>
         </div>
