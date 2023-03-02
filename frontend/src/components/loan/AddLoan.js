@@ -37,7 +37,7 @@ function AddLoan() {
       const response = await api.post("/addrequest", data);
       if (response.status === 201) {
         // Success
-        alert("You have successfully created a Loan Request")
+        // alert("You have successfully created a Loan Request")
         window.location.reload(false)
       } else {
         // Fail

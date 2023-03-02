@@ -25,7 +25,7 @@ function LendConfirm(props) {
     
     const response = await api.post('/startdeal',data)
     console.log(response)
-    alert("Lend Complete")
+    // alert("Lend Complete")
     window.location.reload(false)
 
   }
