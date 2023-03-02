@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeLendBox } from "../redux/features/mainSlicer";
 import api from "../stuff/axios"; // axios instance
+import { Badge } from "@nextui-org/react";
 
 function AddLend() {
   const [checkbox, checkboxPressed] = useState(false);
@@ -10,6 +11,8 @@ function AddLend() {
   const [lendTime, setLendTime] = useState(0);
   const [lendDescription, setLendDescription] = useState(0);
   const dispatch = useDispatch();
+
+  const [success, setSuccess] = useState(false);
 
   const handlePressed = () => {
     checkbox ? checkboxPressed(false) : checkboxPressed(true);
@@ -36,9 +39,7 @@ function AddLend() {
     try {
       const response = await api.post("/addrequest", data);
       if (response.status === 201) {
-        // Success
-        // alert("You have successfully created a Lend Request")
-        window.location.reload(false)
+        setSuccess(true);
       } else {
         // Fail
       }
@@ -95,6 +96,10 @@ function AddLend() {
             className="form_input w-full h-20"
           />
         </div>
+        {/* Success message with nextui if success*/}
+        {success && (
+          <div className="flex justify-center text-green-500">Success</div>
+        )}
 
         <div className="py-2">
           <button onClick={(e)=>handleAddLendSubmit(e)} className="w-full bg-[#2c8b35] rounded-md py-1"> Add</button>

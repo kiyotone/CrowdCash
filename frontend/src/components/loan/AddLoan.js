@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeLoanBox } from "../redux/features/mainSlicer";
 import api from "../stuff/axios"; // axios instance
+import { Badge } from "@nextui-org/react";
 
 function AddLoan() {
   const [checkbox, checkboxPressed] = useState(false);
@@ -14,6 +15,8 @@ function AddLoan() {
   const handlePressed = () => {
     checkbox ? checkboxPressed(false) : checkboxPressed(true);
   };
+
+  const [success, setSuccess] = useState(false);
 
   const closeAddLoan = (e) => {
     if (e.target.id == "loanBox") {
@@ -36,9 +39,7 @@ function AddLoan() {
     try {
       const response = await api.post("/addrequest", data);
       if (response.status === 201) {
-        // Success
-        alert("You have successfully created a Loan Request")
-        window.location.reload(false)
+        setSuccess(true);
       } else {
         // Fail
       }
@@ -95,7 +96,10 @@ function AddLoan() {
             className="form_input w-full h-20"
           />
         </div>
-
+        {/* Success message with nextui if success*/}
+        {success && (
+          <div className="flex justify-center text-green-500">Success</div>
+        )}
         <div className="py-2">
           <button onClick={(e)=>handleAddLoanSubmit(e)} className="w-full bg-[#b84f4f] rounded-md py-1"> Add</button>
         </div>

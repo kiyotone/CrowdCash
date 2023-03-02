@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useDispatch, useSelector } from "react-redux";
 import { changeConfirmPoppup } from '../redux/features/mainSlicer';
 import api from '../stuff/axios';
+import { Badge } from "@nextui-org/react";
 
 
 
@@ -11,6 +12,8 @@ function LoanConfirm(props) {
   const loan = props.loan;
   console.log(loan)
   const dispatch = useDispatch()
+
+  const [success, setSuccess] = React.useState(false)
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -24,9 +27,7 @@ function LoanConfirm(props) {
     }
     
     const response = await api.post('/startdeal',data)
-    console.log(response)
-    alert("Loan Complete")
-    window.location.reload(false)
+    setSuccess(true)
 
   }
   const handleclose = (e) => {
@@ -88,6 +89,10 @@ function LoanConfirm(props) {
       
       </div>
       </div>
+        {/* Success message with nextui if success*/}
+        {success && (
+          <div className="flex justify-center text-green-500">Success</div>
+        )}
       <div className='flex justify-center'>
       <button onClick={(e)=>handleSubmit(e)} className='bg-[#b84f4f] p-3 mt-4 rounded-full items-center '>Get This Loan</button>
       </div>
