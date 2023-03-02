@@ -27,18 +27,19 @@ function AddLoan() {
     e.preventDefault();
 
     const data = {
-  
-      'amount': amount,
-      'description': loanDescription,
-      'finalAmount': finalAmount,
-      'weeks': loanTime,
-      'type': 'Loan' // Lend ko lagi chai type Investment hunxa
-    }
+      amount: amount,
+      description: loanDescription,
+      finalAmount: finalAmount,
+      weeks: loanTime,
+      type: "Loan", // Lend ko lagi chai type Investment hunxa
+    };
 
     try {
       const response = await api.post("/addrequest", data);
       if (response.status === 201) {
         // Success
+        alert("You have successfully created a Loan Request");
+        window.location.reload(false);
         // alert("You have successfully created a Loan Request")
         setSuccess(true);
       } else {
@@ -47,8 +48,7 @@ function AddLoan() {
     } catch (error) {
       console.log(error);
     }
-    
-  }
+  };
 
   return (
     <div
@@ -68,18 +68,17 @@ function AddLoan() {
           />
         </div>
 
-          <div className="flex flex-col gap-1 ">
-            <label>Final Amount</label>
-            <input
-              type={"number"}
-              onChange={(e) => setfinalAmount(e.target.value)}
-              className="form_input "
-              min="100"
-              max="10000"
-            />
-          </div>
+        <div className="flex flex-col gap-1 ">
+          <label>Final Amount</label>
+          <input
+            type={"number"}
+            onChange={(e) => setfinalAmount(e.target.value)}
+            className="form_input "
+            min="100"
+            max="10000"
+          />
+        </div>
 
-        
         <div className="flex flex-col gap-1 w-[50%]">
           <label>Time in Weeks</label>
           <input
@@ -99,10 +98,20 @@ function AddLoan() {
         </div>
 
         {/* Success message if success */}
-        {success && <div className="text-center justify-center text-green-500">You have successfully created a Loan Request</div>}
+        {success && (
+          <div className="text-center justify-center text-green-500">
+            You have successfully created a Loan Request
+          </div>
+        )}
 
         <div className="py-2">
-          <button onClick={(e)=>handleAddLoanSubmit(e)} className="w-full bg-[#b84f4f] rounded-md py-1"> Add</button>
+          <button
+            onClick={(e) => handleAddLoanSubmit(e)}
+            className="w-full bg-[#b84f4f] rounded-md py-1"
+          >
+            {" "}
+            Add
+          </button>
         </div>
       </div>
     </div>

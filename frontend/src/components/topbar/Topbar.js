@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BiNotification } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import {
   changeCurrentPortal,
@@ -7,8 +6,7 @@ import {
   changeOrderBar,
 } from "../redux/features/mainSlicer";
 import { useDispatch } from "react-redux";
-import NotificationBar from "./Notification/NotificationBar";
-import OrderBar from "./Deals/DealsBar";
+
 import Logo from "./Logo.png";
 import api from "../stuff/axios";
 import {
@@ -23,7 +21,6 @@ function Topbar() {
   const main = useSelector((state) => state.main);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const [email, setEmail] = useState(null);
   const router = useRouter();
 
   function handleLogout() {
@@ -121,7 +118,7 @@ function Topbar() {
 
         {main.isOrderBarOpen && <DealsBar />}
         <div className="flex items-center space-x-2">
-          <div className="">{user.user.firstname}</div>
+          <div onClick={()=>router.push('/Me')} className="">{user.user.firstname}</div>
           <button
             onClick={() => handleLogout()}
             className="ml-4 bg-button_secondary rounded-lg p-2 px-3"
