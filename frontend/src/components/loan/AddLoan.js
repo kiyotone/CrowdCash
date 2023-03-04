@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeLoanBox } from "../redux/features/mainSlicer";
@@ -10,6 +11,7 @@ function AddLoan() {
   const [loanTime, setLoanTime] = useState(0);
   const [loanDescription, setLoanDescription] = useState(0);
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const [success, setSuccess] = useState(false);
 
@@ -38,10 +40,12 @@ function AddLoan() {
       const response = await api.post("/addrequest", data);
       if (response.status === 201) {
         // Success
-        alert("You have successfully created a Loan Request");
-        window.location.reload(false);
+        // alert("You have successfully created a Loan Request");
+        // window.location.reload(false);
         // alert("You have successfully created a Loan Request")
         setSuccess(true);
+        router.push('/');
+        dispatch(changeLoanBox(false));
       } else {
         // Fail
       }

@@ -4,11 +4,13 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { changeConfirmPoppup } from "../redux/features/mainSlicer";
 import api from "../stuff/axios";
+import { useRouter } from "next/router";
 
 function LoanConfirm(props) {
   const loan = props.loan;
   console.log(loan);
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const [success, setSuccess] = React.useState(false);
 
@@ -25,9 +27,11 @@ function LoanConfirm(props) {
     const response = await api.post("/startdeal", data);
     console.log(response);
     // alert("Loan Complete")
-    //window.location.reload(false)
+    window.location.reload(false)
     setSuccess(true);
-  };
+    router.push('/');
+    dispatch(changeConfirmPoppup(false));
+  };  
   const handleclose = (e) => {
     if (e.target.id == "loanConfirmBox") {
       dispatch(changeConfirmPoppup(false));
@@ -70,6 +74,13 @@ function LoanConfirm(props) {
             </div>
           </div>
         </div>
+
+        {success && (
+          <div className="text-center justify-center text-green-500">
+            You have successfully created a Loan Request
+          </div>
+        )}
+
         <div className="flex justify-center">
           <button
             onClick={(e) => handleSubmit(e)}

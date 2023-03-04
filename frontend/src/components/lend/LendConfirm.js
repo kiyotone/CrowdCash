@@ -4,20 +4,21 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { changeConfirmPoppup } from "../redux/features/mainSlicer";
 import api from "../stuff/axios";
+import { useRouter } from "next/router";
 
 function LendConfirm(props) {
+  const [success, setSuccess] = React.useState(false);
+
   const lend = props.lend;
   console.log(lend);
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     console.log(lend);
-    const dispatch = useDispatch();
+    
 
-    const [success, setSuccess] = React.useState(false);
 
-    const handleSubmit = async (e) => {
-      // e.preventDefault();
       const data = {
         id: lend.id,
         amount: lend.amount,
@@ -29,15 +30,14 @@ function LendConfirm(props) {
       const response = await api.post("/startdeal", data);
       console.log(response);
       // alert("Lend Complete");
-      // window.location.reload(false);
+      window.location.reload(false);
+      setSuccess(true);
+      router.push('/');
+    dispatch(changeConfirmPoppup(false)); 
     };
 
-    const response = await api.post("/startdeal", data);
-    console.log(response);
-    // alert("Lend Complete")
-    // window.location.reload(false)
-    setSuccess(true);
-  };
+    
+
 
   const handleclose = (e) => {
     if (e.target.id == "lendConfirmBox") {
@@ -60,7 +60,7 @@ function LendConfirm(props) {
           </div>
           <div className="">
           <div className='pl-5 font-bold text-2xl'>Phone No.</div>
-            <div className="pl-5 w-20 h-7">{loan.author.phone}</div>
+            <div className="pl-5 w-20 h-7">{lend.author.phone}</div>
             <div className="pl-5 font-bold text-2xl">Description </div>
             <div className="pl-5 w-20 h-20">{lend.description}</div>
             <div className="pl-5 space-x-4 w-[80%] flex">

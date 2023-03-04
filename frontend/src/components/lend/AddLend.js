@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeLendBox } from "../redux/features/mainSlicer";
@@ -10,6 +11,7 @@ function AddLend() {
   const [lendTime, setLendTime] = useState(0);
   const [lendDescription, setLendDescription] = useState(0);
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const [success, setSuccess] = useState(false);
 
@@ -39,9 +41,11 @@ function AddLend() {
       if (response.status === 201) {
         // Success
         // alert("You have successfully created a Lend Request")
-        window.location.reload(false);
+        // window.location.reload(false);
         // window.location.reload(false)
+        router.push('/');
         setSuccess(true);
+        dispatch(changeLendBox(false));
       } else {
         // Fail
       }

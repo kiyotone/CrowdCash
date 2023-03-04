@@ -79,7 +79,6 @@ class GetRequestView(APIView):
                 loan_requests_json.append(item.to_dict())
         
         for item in investment_requests:
-            print(item.to_dict())
             # Filter out requests of the user
             if item.author != user:
                 investment_requests_json.append(item.to_dict())
